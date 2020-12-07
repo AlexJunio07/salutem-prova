@@ -84,6 +84,31 @@ namespace Salutem
             }
         }
 
+        private void BuscarRegistro()
+        {
+            int cod_cliente = int.Parse(txtCodCliente.Text);
+            Funcoes.Limpar(this);
+            ClienteDAO clientedao = new ClienteDAO();
+            Cliente cliente = new Cliente();
+
+            cliente = clientedao.PesquisarCodCliente(cod_cliente);
+
+            if (cliente.cod_cliente > 0)
+            {
+                txtCodCliente.Text = cliente.cod_cliente.ToString();
+                mskCNPJ.Text = cliente.cnpj;
+                txtRazaoSocial.Text = cliente.razao_social;
+                txtLatitude.Text = cliente.latitude;
+                txtLongitude.Text = cliente.longitude;
+
+                Funcoes.HabilitarBotoes(this, "Editar");
+
+            }
+            else
+                MessageBox.Show("Código do cliente não encontrado !", "Atenção");
+
+        }
+
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             if (ValidarCampos() == true)
@@ -96,21 +121,33 @@ namespace Salutem
 
                 ClienteDAO clientedao = new ClienteDAO();
 
-                if (clientedao.Inserir(cliente) == false)
+                if (Operacao == "Novo")
                 {
-                    mskCNPJ.Focus();
-                    return;
+                    if (ValidacaoCNPJ.ValidaCNPJ.IsCnpj(mskCNPJ.Text))
+                    {
+                        if (clientedao.Inserir(cliente) == false)
+                        {
+                            mskCNPJ.Focus();
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("O número é um CNPJ Inválido !", "Atenção", 0, MessageBoxIcon.Warning);
+                    }
                 }
 
-            }
+                else if (Operacao == "Editar")
+                {
+                    if (ValidacaoCNPJ.ValidaCNPJ.IsCnpj(mskCNPJ.Text))
+                    {
 
-            if (ValidacaoCNPJ.ValidaCNPJ.IsCnpj(mskCNPJ.Text))
-            {
-                MessageBox.Show("O número é um CNPJ Válido !");
-            }
-            else
-            {
-                MessageBox.Show("O número é um CNPJ Inválido !");
+                    }
+                    else
+                    {
+                        MessageBox.Show("O número é um CNPJ Inválido !");
+                    }
+                }
             }
         }
 
@@ -122,6 +159,17 @@ namespace Salutem
             txtCodCliente.Enabled = false;
             mskCNPJ.Focus();
             Operacao = "Novo";
+        }
+
+        private void txtCodCliente_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (txtCodCliente.Text.Length > 0)
+                {
+                    BuscarRegistro();
+                }
+            }
         }
     }
 }
