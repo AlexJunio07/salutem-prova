@@ -151,9 +151,17 @@ namespace Salutem
                     }
                     else
                     {
-                        MessageBox.Show("O número é um CNPJ Inválido !");
+                        MessageBox.Show("O número é um CNPJ Inválido !", "Atenção", 0, MessageBoxIcon.Warning);
                     }
                 }
+
+                Funcoes.HabilitarCampos(this, false);
+                Funcoes.Limpar(this);
+                Funcoes.HabilitarBotoes(this, "Novo");
+                txtCodCliente.Enabled = true;
+                txtPesquisa.Enabled = true;
+                Operacao = "";
+                txtCodCliente.Focus();
             }
         }
 
