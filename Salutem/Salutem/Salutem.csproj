@@ -66,6 +66,7 @@
     <Compile Include="Model\Vendedor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\Funcoes.cs" />
     <EmbeddedResource Include="FrmCadastroClientes.resx">
       <DependentUpon>FrmCadastroClientes.cs</DependentUpon>
     </EmbeddedResource>

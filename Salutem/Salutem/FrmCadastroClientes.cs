@@ -1,5 +1,6 @@
 ﻿using Salutem.DAO;
 using Salutem.Model;
+using Salutem.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +15,9 @@ namespace Salutem
 {
     public partial class FrmCadastroClientes : Form
     {
+
+        string Operacao;
+
         public FrmCadastroClientes()
         {
             InitializeComponent();
@@ -48,6 +52,38 @@ namespace Salutem
             return true;
         }
 
+        private void HabilitarBotoes(string Situacao)
+        {
+            if (Situacao == "Salvar")
+            {
+                btnNovo.Enabled = false;
+                btnEditar.Enabled = false;
+                btnExcluir.Enabled = false;
+                btnSalvar.Enabled = true;
+                btnCancelar.Enabled = true;
+                btnSair.Enabled = false;
+            }
+            else if (Situacao == "Editar")
+            {
+                btnNovo.Enabled = false;
+                btnEditar.Enabled = true;
+                btnExcluir.Enabled = true;
+                btnSalvar.Enabled = false;
+                btnCancelar.Enabled = true;
+                btnSair.Enabled = false;
+            }
+
+            else if (Situacao == "Novo")
+            {
+                btnNovo.Enabled = true;
+                btnEditar.Enabled = false;
+                btnExcluir.Enabled = false;
+                btnSalvar.Enabled = false;
+                btnCancelar.Enabled = false;
+                btnSair.Enabled = true;
+            }
+        }
+
         private void btnSalvar_Click(object sender, EventArgs e)
         {
             if (ValidarCampos() == true)
@@ -76,6 +112,16 @@ namespace Salutem
             {
                 MessageBox.Show("O número é um CNPJ Inválido !");
             }
+        }
+
+        private void btnNovo_Click(object sender, EventArgs e)
+        {
+            Funcoes.HabilitarCampos(this, true);
+            Funcoes.Limpar(this);
+            Funcoes.HabilitarBotoes(this, "Salvar");
+            txtCodCliente.Enabled = false;
+            mskCNPJ.Focus();
+            Operacao = "Novo";
         }
     }
 }
