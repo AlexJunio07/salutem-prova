@@ -111,6 +111,7 @@ namespace Salutem
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
+
             if (ValidarCampos() == true)
             {
                 Cliente cliente = new Cliente();

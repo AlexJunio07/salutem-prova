@@ -46,7 +46,7 @@ namespace Salutem.DAO
 
         public bool Alterar(Cliente cliente)
         {
-            string sql = "UPDATE TB_CLIENTES SET CNPJ_CLIENTE = @cnpj, RAZAO_SOCIAL_CLIENTE = @razao_social, LATITUDE_CLIENTE = @latitude, LONGITUDE_CLIENTE = @longitude, ";
+            string sql = "UPDATE TB_CLIENTES SET CNPJ_CLIENTE = @cnpj, RAZAO_SOCIAL_CLIENTE = @razao_social, LATITUDE_CLIENTE = @latitude, LONGITUDE_CLIENTE = @longitude ";
 
             sql = sql + "WHERE COD_CLIENTE = @cod_cliente";
 
@@ -57,13 +57,14 @@ namespace Salutem.DAO
                     conn.Open();
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
 
-                    cmd.Parameters.AddWithValue("@codigo", cliente.cod_cliente);
+                    cmd.Parameters.AddWithValue("@cod_cliente", cliente.cod_cliente);
                     cmd.Parameters.AddWithValue("@cnpj", cliente.cnpj);
                     cmd.Parameters.AddWithValue("@razao_social", cliente.razao_social);
                     cmd.Parameters.AddWithValue("@latitude", cliente.latitude);
                     cmd.Parameters.AddWithValue("@longitude", cliente.longitude);
-
                     cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Cliente Alterado com sucesso!", "Cliente", 0, MessageBoxIcon.Exclamation);
                     return true;
                 }
                 catch (Exception ex)
