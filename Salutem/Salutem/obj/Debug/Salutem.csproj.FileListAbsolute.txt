@@ -14,3 +14,6 @@ A:\SISTEMAS\SISTEMAS\Salutem\Salutem\Salutem\bin\Debug\BouncyCastle.Crypto.dll
 A:\SISTEMAS\SISTEMAS\Salutem\Salutem\Salutem\bin\Debug\Ubiety.Dns.Core.dll
 A:\SISTEMAS\SISTEMAS\Salutem\Salutem\Salutem\bin\Debug\Renci.SshNet.dll
 A:\SISTEMAS\SISTEMAS\Salutem\Salutem\Salutem\bin\Debug\MySql.Data.xml
+A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\bin\Debug\Salutem.exe.config
+A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\obj\Debug\Salutem.exe
+A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\obj\Debug\Salutem.pdb
