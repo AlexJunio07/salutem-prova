@@ -19,5 +19,3 @@ CREATE TABLE salutem.tb_vendedores (
   longitude_vendedor varchar(255))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
-
-teste
