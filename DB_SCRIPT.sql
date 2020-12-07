@@ -7,7 +7,7 @@ CREATE TABLE salutem.tb_clientes (
   cnpj_cliente VARCHAR(14) NOT NULL,
   razao_social_cliente varchar(255) not null,
   latitude_cliente varchar(255),
-  longitude varchar(255))
+  longitude_cliente varchar(255))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
