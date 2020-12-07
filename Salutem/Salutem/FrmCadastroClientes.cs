@@ -141,7 +141,12 @@ namespace Salutem
                 {
                     if (ValidacaoCNPJ.ValidaCNPJ.IsCnpj(mskCNPJ.Text))
                     {
-
+                        cliente.cod_cliente = int.Parse(txtCodCliente.Text);
+                        if (clientedao.Alterar(cliente) == false)
+                        {
+                            mskCNPJ.Focus();
+                            return;
+                        }
                     }
                     else
                     {
@@ -170,6 +175,15 @@ namespace Salutem
                     BuscarRegistro();
                 }
             }
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            Funcoes.HabilitarCampos(this, true);
+            Funcoes.HabilitarBotoes(this, "Salvar");
+            txtCodCliente.Enabled = false;
+            mskCNPJ.Focus();
+            Operacao = "Editar";
         }
     }
 }
