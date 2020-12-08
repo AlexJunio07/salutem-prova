@@ -103,5 +103,35 @@ namespace Salutem.DAO
             }
             return cliente;
         }
+
+        public List<Cliente> BuscarRazaoSocial(String razao_social_cliente)
+        {
+            List<Cliente> lista = new List<Cliente>();
+
+            string sql = "SELECT COD_CLIENTE, CNPJ_CLIENTE, RAZAO_SOCIAL_CLIENTE, LATITUDE_CLIENTE, LONGITUDE_CLIENTE ";
+            sql = sql + "FROM TB_CLIENTES WHERE RAZAO_SOCIAL_CLIENTE LIKE @razao_social ORDER BY RAZAO_SOCIAL_CLIENTE";
+
+            using (MySqlConnection conn = new MySqlConnection(conStr))
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@razao_social", '%' + razao_social_cliente + '%');
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Cliente cliente = new Cliente();
+                    cliente.cod_cliente = int.Parse(reader["COD_CLIENTE"].ToString());
+                    cliente.cnpj = reader["CNPJ_CLIENTE"].ToString();
+                    cliente.razao_social = reader["RAZAO_SOCIAL_CLIENTE"].ToString();
+                    cliente.latitude = reader["LATITUDE_CLIENTE"].ToString();
+                    cliente.longitude = reader["LONGITUDE_CLIENTE"].ToString();
+
+                    lista.Add(cliente);
+                }
+                conn.Close();
+            }
+            return lista;
+        }
     }
 }

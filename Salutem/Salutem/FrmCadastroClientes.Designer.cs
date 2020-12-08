@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCadastroClientes));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tbpCadastro = new System.Windows.Forms.TabPage();
             this.mskCNPJ = new System.Windows.Forms.MaskedTextBox();
@@ -51,18 +53,20 @@
             this.txtPesquisa = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.dgvDados = new System.Windows.Forms.DataGridView();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tbpCadastro.SuspendLayout();
             this.tbpPesquisa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDados)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -108,7 +112,7 @@
             this.mskCNPJ.Mask = "00,000,000/0000-00";
             this.mskCNPJ.Name = "mskCNPJ";
             this.mskCNPJ.Size = new System.Drawing.Size(274, 20);
-            this.mskCNPJ.TabIndex = 39;
+            this.mskCNPJ.TabIndex = 1;
             // 
             // txtLatitude
             // 
@@ -116,7 +120,7 @@
             this.txtLatitude.Location = new System.Drawing.Point(85, 170);
             this.txtLatitude.Name = "txtLatitude";
             this.txtLatitude.Size = new System.Drawing.Size(263, 20);
-            this.txtLatitude.TabIndex = 38;
+            this.txtLatitude.TabIndex = 3;
             // 
             // label6
             // 
@@ -133,7 +137,7 @@
             this.txtRazaoSocial.Location = new System.Drawing.Point(110, 132);
             this.txtRazaoSocial.Name = "txtRazaoSocial";
             this.txtRazaoSocial.Size = new System.Drawing.Size(238, 20);
-            this.txtRazaoSocial.TabIndex = 36;
+            this.txtRazaoSocial.TabIndex = 2;
             // 
             // label5
             // 
@@ -150,7 +154,7 @@
             this.txtLongitude.Location = new System.Drawing.Point(94, 205);
             this.txtLongitude.Name = "txtLongitude";
             this.txtLongitude.Size = new System.Drawing.Size(254, 20);
-            this.txtLongitude.TabIndex = 34;
+            this.txtLongitude.TabIndex = 4;
             // 
             // label4
             // 
@@ -166,7 +170,7 @@
             this.txtCodCliente.Location = new System.Drawing.Point(115, 54);
             this.txtCodCliente.Name = "txtCodCliente";
             this.txtCodCliente.Size = new System.Drawing.Size(109, 20);
-            this.txtCodCliente.TabIndex = 31;
+            this.txtCodCliente.TabIndex = 0;
             this.txtCodCliente.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCodCliente_KeyDown);
             // 
             // label3
@@ -195,7 +199,7 @@
             this.btnSalvar.Location = new System.Drawing.Point(278, 279);
             this.btnSalvar.Name = "btnSalvar";
             this.btnSalvar.Size = new System.Drawing.Size(76, 42);
-            this.btnSalvar.TabIndex = 28;
+            this.btnSalvar.TabIndex = 8;
             this.btnSalvar.Text = "Salvar";
             this.btnSalvar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSalvar.UseVisualStyleBackColor = true;
@@ -208,10 +212,11 @@
             this.btnSair.Location = new System.Drawing.Point(576, 279);
             this.btnSair.Name = "btnSair";
             this.btnSair.Size = new System.Drawing.Size(66, 42);
-            this.btnSair.TabIndex = 27;
+            this.btnSair.TabIndex = 10;
             this.btnSair.Text = "Sair";
             this.btnSair.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSair.UseVisualStyleBackColor = true;
+            this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
             // btnCancelar
             // 
@@ -221,10 +226,11 @@
             this.btnCancelar.Location = new System.Drawing.Point(481, 279);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(89, 42);
-            this.btnCancelar.TabIndex = 26;
+            this.btnCancelar.TabIndex = 9;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnExcluir
             // 
@@ -234,7 +240,7 @@
             this.btnExcluir.Location = new System.Drawing.Point(196, 279);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(76, 42);
-            this.btnExcluir.TabIndex = 25;
+            this.btnExcluir.TabIndex = 7;
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnExcluir.UseVisualStyleBackColor = true;
@@ -247,7 +253,7 @@
             this.btnEditar.Location = new System.Drawing.Point(115, 279);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(75, 42);
-            this.btnEditar.TabIndex = 24;
+            this.btnEditar.TabIndex = 6;
             this.btnEditar.Text = "Editar";
             this.btnEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEditar.UseVisualStyleBackColor = true;
@@ -260,7 +266,7 @@
             this.btnNovo.Location = new System.Drawing.Point(34, 279);
             this.btnNovo.Name = "btnNovo";
             this.btnNovo.Size = new System.Drawing.Size(75, 42);
-            this.btnNovo.TabIndex = 23;
+            this.btnNovo.TabIndex = 5;
             this.btnNovo.Text = "Novo";
             this.btnNovo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnNovo.UseVisualStyleBackColor = true;
@@ -285,8 +291,9 @@
             this.txtPesquisa.Location = new System.Drawing.Point(89, 318);
             this.txtPesquisa.MaxLength = 50;
             this.txtPesquisa.Name = "txtPesquisa";
-            this.txtPesquisa.Size = new System.Drawing.Size(571, 20);
+            this.txtPesquisa.Size = new System.Drawing.Size(588, 20);
             this.txtPesquisa.TabIndex = 2;
+            this.txtPesquisa.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPesquisa_KeyDown);
             // 
             // label12
             // 
@@ -311,48 +318,9 @@
             this.dgvDados.Location = new System.Drawing.Point(6, 6);
             this.dgvDados.Name = "dgvDados";
             this.dgvDados.ReadOnly = true;
-            this.dgvDados.Size = new System.Drawing.Size(654, 302);
+            this.dgvDados.Size = new System.Drawing.Size(671, 302);
             this.dgvDados.TabIndex = 0;
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "codigo_cliente";
-            this.Column1.HeaderText = "Código";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 50;
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "cnpj_cliente";
-            this.Column3.HeaderText = "CNPJ";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 300;
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "razao_social_cliente";
-            this.Column2.HeaderText = "Razão Social";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 300;
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "latitude_cliente";
-            this.Column4.HeaderText = "Latitude";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 50;
-            // 
-            // Column5
-            // 
-            this.Column5.DataPropertyName = "longitude_cliente";
-            this.Column5.HeaderText = "Longitude";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Width = 150;
+            this.dgvDados.DoubleClick += new System.EventHandler(this.dgvDados_DoubleClick);
             // 
             // tableLayoutPanel1
             // 
@@ -380,6 +348,48 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "CLIENTES";
             // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "COD_CLIENTE";
+            this.Column1.HeaderText = "Código";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 50;
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "CNPJ";
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            this.Column3.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Column3.HeaderText = "CNPJ";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 300;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "RAZAO_SOCIAL";
+            this.Column2.HeaderText = "Razão Social";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 300;
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "LATITUDE";
+            this.Column4.HeaderText = "Latitude";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 50;
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "LONGITUDE";
+            this.Column5.HeaderText = "Longitude";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Width = 150;
+            // 
             // FrmCadastroClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -398,6 +408,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvDados)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -428,6 +439,7 @@
         private System.Windows.Forms.MaskedTextBox mskCNPJ;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;

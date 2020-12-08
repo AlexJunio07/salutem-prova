@@ -108,6 +108,17 @@ namespace Salutem
                 MessageBox.Show("Código do cliente não encontrado !", "Atenção");
 
         }
+        
+        private void LevarID()
+        {
+            if (dgvDados.RowCount > 0)
+            {
+                txtCodCliente.Text = dgvDados.CurrentRow.Cells[0].Value.ToString();
+                tabControl1.SelectedTab = tbpCadastro;
+                txtCodCliente.Focus();
+                BuscarRegistro();
+            }
+        }
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
@@ -131,6 +142,16 @@ namespace Salutem
                             mskCNPJ.Focus();
                             return;
                         }
+                        else
+                        {
+                            Funcoes.HabilitarCampos(this, false);
+                            Funcoes.Limpar(this);
+                            Funcoes.HabilitarBotoes(this, "Novo");
+                            txtCodCliente.Enabled = true;
+                            txtPesquisa.Enabled = true;
+                            Operacao = "";
+                            txtCodCliente.Focus();
+                        }
                     }
                     else
                     {
@@ -148,6 +169,16 @@ namespace Salutem
                             mskCNPJ.Focus();
                             return;
                         }
+                        else
+                        {
+                            Funcoes.HabilitarCampos(this, false);
+                            Funcoes.Limpar(this);
+                            Funcoes.HabilitarBotoes(this, "Novo");
+                            txtCodCliente.Enabled = true;
+                            txtPesquisa.Enabled = true;
+                            Operacao = "";
+                            txtCodCliente.Focus();
+                        }
                     }
                     else
                     {
@@ -155,13 +186,7 @@ namespace Salutem
                     }
                 }
 
-                Funcoes.HabilitarCampos(this, false);
-                Funcoes.Limpar(this);
-                Funcoes.HabilitarBotoes(this, "Novo");
-                txtCodCliente.Enabled = true;
-                txtPesquisa.Enabled = true;
-                Operacao = "";
-                txtCodCliente.Focus();
+                
             }
         }
 
@@ -193,6 +218,46 @@ namespace Salutem
             txtCodCliente.Enabled = false;
             mskCNPJ.Focus();
             Operacao = "Editar";
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deseja realmente cancelar a edição do registro ?",
+                "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                Funcoes.HabilitarCampos(this, false);
+                Funcoes.Limpar(this);
+                Funcoes.HabilitarBotoes(this, "Novo");
+                txtCodCliente.Enabled = true;
+                txtPesquisa.Enabled = true;
+                txtCodCliente.Focus();
+                Operacao = "";
+            }
+        }
+
+        private void btnSair_Click(object sender, EventArgs e)
+        {
+            Dispose();
+        }
+
+        private void txtPesquisa_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (txtPesquisa.Text.Length > 0)
+                {
+                    ClienteDAO clientedao = new ClienteDAO();
+                    bindingSource1.DataSource = clientedao.BuscarRazaoSocial(txtPesquisa.Text);
+
+                    dgvDados.AutoGenerateColumns = false;
+                    dgvDados.DataSource = bindingSource1;
+                }
+            }
+        }
+
+        private void dgvDados_DoubleClick(object sender, EventArgs e)
+        {
+            LevarID();
         }
     }
 }
