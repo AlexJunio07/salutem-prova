@@ -75,6 +75,7 @@
             this.cadastroDeVendedorToolStripMenuItem.Name = "cadastroDeVendedorToolStripMenuItem";
             this.cadastroDeVendedorToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.cadastroDeVendedorToolStripMenuItem.Text = "Cadastro de Vendedor";
+            this.cadastroDeVendedorToolStripMenuItem.Click += new System.EventHandler(this.cadastroDeVendedorToolStripMenuItem_Click);
             // 
             // exportaçãoToolStripMenuItem
             // 

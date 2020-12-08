@@ -130,7 +130,7 @@ namespace Salutem.DAO
             }
             return cliente;
         }
-
+       
         public Cliente PesquisarCodCliente(int cod_cliente)
         {
             Cliente cliente = new Cliente();

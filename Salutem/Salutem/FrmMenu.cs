@@ -22,5 +22,11 @@ namespace Salutem
             FrmCadastroClientes frmcadastroclientes = new FrmCadastroClientes();
             frmcadastroclientes.ShowDialog();
         }
+
+        private void cadastroDeVendedorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmCadastroVendedor frmcadastrovendedor = new FrmCadastroVendedor();
+            frmcadastrovendedor.ShowDialog();
+        }
     }
 }

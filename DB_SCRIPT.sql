@@ -1,3 +1,4 @@
+/*drop database salutem;*/
 CREATE DATABASE salutem DEFAULT CHARACTER SET utf8;
 
 USE salutem;
@@ -13,7 +14,7 @@ DEFAULT CHARACTER SET = utf8;
 
 CREATE TABLE salutem.tb_vendedores (
   cod_vendedor INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  cpf_vendedor VARCHAR(11) NOT NULL,
+  cpf_vendedor VARCHAR(14) NOT NULL,
   nome_vendedor varchar(255) not null,
   latitude_vendedor varchar(255),
   longitude_vendedor varchar(255))

@@ -13,27 +13,26 @@ using System.Windows.Forms;
 
 namespace Salutem
 {
-    public partial class FrmCadastroClientes : Form
+    public partial class FrmCadastroVendedor : Form
     {
-
-        string Operacao;
-
-        public FrmCadastroClientes()
+        public FrmCadastroVendedor()
         {
             InitializeComponent();
         }
 
+        string Operacao;
+
         private bool ValidarCampos()
         {
-            if (mskCNPJ.Text.Trim() == string.Empty)
+            if (mskCPF.Text.Trim() == string.Empty)
             {
-                MessageBox.Show("O campo CNPJ é obrigatório!", "Atenção", 0, MessageBoxIcon.Warning);
+                MessageBox.Show("O campo CPF é obrigatório!", "Atenção", 0, MessageBoxIcon.Warning);
                 return false;
             }
 
-            else if (txtRazaoSocial.Text.Trim() == string.Empty)
+            else if (txtNome.Text.Trim() == string.Empty)
             {
-                MessageBox.Show("O campo Razão Social é obrigatório!", "Atenção", 0, MessageBoxIcon.Warning);
+                MessageBox.Show("O campo Nome é obrigatório!", "Atenção", 0, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -54,26 +53,26 @@ namespace Salutem
 
         private void BuscarRegistro()
         {
-            int cod_cliente = int.Parse(txtCodCliente.Text);
+            int cod_vendedor = int.Parse(txtCodVendedor.Text);
             Funcoes.Limpar(this);
-            ClienteDAO clientedao = new ClienteDAO();
-            Cliente cliente = new Cliente();
+            VendedorDAO vendedordao = new VendedorDAO();
+            Vendedor vendedor = new Vendedor();
 
-            cliente = clientedao.PesquisarCodCliente(cod_cliente);
+            vendedor = vendedordao.PesquisarCodVendedor(cod_vendedor);
 
-            if (cliente.cod_cliente > 0)
+            if (vendedor.cod_vendedor > 0)
             {
-                txtCodCliente.Text = cliente.cod_cliente.ToString();
-                mskCNPJ.Text = cliente.cnpj;
-                txtRazaoSocial.Text = cliente.razao_social;
-                txtLatitude.Text = cliente.latitude;
-                txtLongitude.Text = cliente.longitude;
+                txtCodVendedor.Text = vendedor.cod_vendedor.ToString();
+                mskCPF.Text = vendedor.cpf;
+                txtNome.Text = vendedor.nome;
+                txtLatitude.Text = vendedor.latitude;
+                txtLongitude.Text = vendedor.longitude;
 
                 Funcoes.HabilitarBotoes(this, "Editar");
 
             }
             else
-                MessageBox.Show("Código do cliente não encontrado !", "Atenção");
+                MessageBox.Show("Código do vendedor não encontrado !", "Atenção");
 
         }
 
@@ -81,44 +80,45 @@ namespace Salutem
         {
             if (dgvDados.RowCount > 0)
             {
-                txtCodCliente.Text = dgvDados.CurrentRow.Cells[0].Value.ToString();
+                txtCodVendedor.Text = dgvDados.CurrentRow.Cells[0].Value.ToString();
                 tabControl1.SelectedTab = tbpCadastro;
-                txtCodCliente.Focus();
+                txtCodVendedor.Focus();
                 BuscarRegistro();
             }
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
+
         {
             if (ValidarCampos() == true)
             {
-                Cliente cliente = new Cliente();
-                cliente.cnpj = mskCNPJ.Text;
+                Vendedor vendedor = new Vendedor();
+                vendedor.cpf = mskCPF.Text;
 
-                ClienteDAO clientedao = new ClienteDAO();
+                VendedorDAO vendedordao = new VendedorDAO();
 
                 if (Operacao == "Novo")
                 {
                     //Valida o CNPJ.
-                    if (ValidacaoCNPJ.ValidaCNPJ.IsCnpj(mskCNPJ.Text))
+                    if (ValidacaoCPF.ValidaCPF.IsCpf(mskCPF.Text))
                     {
                         //Chama a classe para verificar se ja existe CNPJ cadastrado.
-                        cliente = clientedao.ValidarCNPJ(this.mskCNPJ.Text);
-                        if (cliente.cod_cliente > 0)
+                        vendedor = vendedordao.ValidarCPF(this.mskCPF.Text);
+                        if (vendedor.cod_vendedor > 0)
                         {
-                            MessageBox.Show("Já existe um cliente cadastrado com este numero de CNPJ: " + mskCNPJ.Text);
+                            MessageBox.Show("Já existe um vendedor cadastrado com este numero de CPF: " + mskCPF.Text);
                         }
                         else
                         {
                             //Recebe os valores em seus atributos apos a confirmação.
-                            cliente.cnpj = mskCNPJ.Text;
-                            cliente.razao_social = txtRazaoSocial.Text;
-                            cliente.latitude = txtLatitude.Text;
-                            cliente.longitude = txtLongitude.Text;
+                            vendedor.cpf = mskCPF.Text;
+                            vendedor.nome = txtNome.Text;
+                            vendedor.latitude = txtLatitude.Text;
+                            vendedor.longitude = txtLongitude.Text;
 
-                            if (clientedao.Inserir(cliente) == false)
+                            if (vendedordao.Inserir(vendedor) == false)
                             {
-                                mskCNPJ.Focus();
+                                mskCPF.Focus();
                                 return;
                             }
                             else
@@ -126,41 +126,41 @@ namespace Salutem
                                 Funcoes.HabilitarCampos(this, false);
                                 Funcoes.Limpar(this);
                                 Funcoes.HabilitarBotoes(this, "Novo");
-                                txtCodCliente.Enabled = true;
+                                txtCodVendedor.Enabled = true;
                                 txtPesquisa.Enabled = true;
                                 Operacao = "";
-                                txtCodCliente.Focus();
+                                txtCodVendedor.Focus();
                             }
                         }
                     }
                     else
                     {
-                        MessageBox.Show("O número é um CNPJ Inválido !", "Atenção", 0, MessageBoxIcon.Warning);
+                        MessageBox.Show("O número é um CPF Inválido !", "Atenção", 0, MessageBoxIcon.Warning);
                     }
                 }
 
                 else if (Operacao == "Editar")
                 {
-                    if (ValidacaoCNPJ.ValidaCNPJ.IsCnpj(mskCNPJ.Text))
+                    if (ValidacaoCPF.ValidaCPF.IsCpf(mskCPF.Text))
                     {
                         //Chama a classe para verificar se ja existe CNPJ cadastrado.
-                        cliente = clientedao.ValidarCNPJ(this.mskCNPJ.Text);
-                        if (cliente.cod_cliente > 0 && cliente.cod_cliente != int.Parse(txtCodCliente.Text))
+                        vendedor = vendedordao.ValidarCPF(this.mskCPF.Text);
+                        if (vendedor.cod_vendedor > 0 && vendedor.cod_vendedor != int.Parse(txtCodVendedor.Text))
                         {
-                            MessageBox.Show("Já existe um cliente cadastrado com este numero de CNPJ: " + mskCNPJ.Text);
+                            MessageBox.Show("Já existe um vendedor cadastrado com este numero de CPF: " + mskCPF.Text);
                         }
                         else
                         {
                             //Recebe os valores em seus atributos apos a confirmação.
-                            cliente.cnpj = mskCNPJ.Text;
-                            cliente.razao_social = txtRazaoSocial.Text;
-                            cliente.latitude = txtLatitude.Text;
-                            cliente.longitude = txtLongitude.Text;
+                            vendedor.cpf = mskCPF.Text;
+                            vendedor.nome = txtNome.Text;
+                            vendedor.latitude = txtLatitude.Text;
+                            vendedor.longitude = txtLongitude.Text;
 
-                            cliente.cod_cliente = int.Parse(txtCodCliente.Text);
-                            if (clientedao.Alterar(cliente) == false)
+                            vendedor.cod_vendedor = int.Parse(txtCodVendedor.Text);
+                            if (vendedordao.Alterar(vendedor) == false)
                             {
-                                mskCNPJ.Focus();
+                                mskCPF.Focus();
                                 return;
                             }
                             else
@@ -168,17 +168,17 @@ namespace Salutem
                                 Funcoes.HabilitarCampos(this, false);
                                 Funcoes.Limpar(this);
                                 Funcoes.HabilitarBotoes(this, "Novo");
-                                txtCodCliente.Enabled = true;
+                                txtCodVendedor.Enabled = true;
                                 txtPesquisa.Enabled = true;
                                 Operacao = "";
-                                txtCodCliente.Focus();
+                                txtCodVendedor.Focus();
                             }
                         }
 
                     }
                     else
                     {
-                        MessageBox.Show("O número é um CNPJ Inválido !", "Atenção", 0, MessageBoxIcon.Warning);
+                        MessageBox.Show("O número é um CPF Inválido !", "Atenção", 0, MessageBoxIcon.Warning);
                     }
                 }
 
@@ -191,29 +191,40 @@ namespace Salutem
             Funcoes.HabilitarCampos(this, true);
             Funcoes.Limpar(this);
             Funcoes.HabilitarBotoes(this, "Salvar");
-            txtCodCliente.Enabled = false;
-            mskCNPJ.Focus();
+            txtCodVendedor.Enabled = false;
+            mskCPF.Focus();
             Operacao = "Novo";
-        }
-
-        private void txtCodCliente_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                if (txtCodCliente.Text.Length > 0)
-                {
-                    BuscarRegistro();
-                }
-            }
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
             Funcoes.HabilitarCampos(this, true);
             Funcoes.HabilitarBotoes(this, "Salvar");
-            txtCodCliente.Enabled = false;
-            mskCNPJ.Focus();
+            txtCodVendedor.Enabled = false;
+            mskCPF.Focus();
             Operacao = "Editar";
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            if (txtNome.Text.Length > 0)
+            {
+                if (MessageBox.Show("Confirma a exclusão do registro ?", "Atenção !", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    VendedorDAO vendedordao = new VendedorDAO();
+                    if (vendedordao.Excluir(int.Parse(txtCodVendedor.Text)) == false)
+                    {
+                        txtCodVendedor.Focus();
+                        return;
+                    }
+                    else
+                    {
+                        Funcoes.Limpar(this);
+                        Funcoes.HabilitarBotoes(this, "Novo");
+                        txtCodVendedor.Focus();
+                    }
+                }
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -224,16 +235,11 @@ namespace Salutem
                 Funcoes.HabilitarCampos(this, false);
                 Funcoes.Limpar(this);
                 Funcoes.HabilitarBotoes(this, "Novo");
-                txtCodCliente.Enabled = true;
+                txtCodVendedor.Enabled = true;
                 txtPesquisa.Enabled = true;
-                txtCodCliente.Focus();
+                txtCodVendedor.Focus();
                 Operacao = "";
             }
-        }
-
-        private void btnSair_Click(object sender, EventArgs e)
-        {
-            Dispose();
         }
 
         private void txtPesquisa_KeyDown(object sender, KeyEventArgs e)
@@ -242,8 +248,8 @@ namespace Salutem
             {
                 if (txtPesquisa.Text.Length > 0)
                 {
-                    ClienteDAO clientedao = new ClienteDAO();
-                    bindingSource1.DataSource = clientedao.BuscarRazaoSocial(txtPesquisa.Text);
+                    VendedorDAO vendedordao = new VendedorDAO();
+                    bindingSource1.DataSource = vendedordao.BuscarRazaoSocial(txtPesquisa.Text);
 
                     dgvDados.AutoGenerateColumns = false;
                     dgvDados.DataSource = bindingSource1;
@@ -256,26 +262,20 @@ namespace Salutem
             LevarID();
         }
 
-        private void btnExcluir_Click(object sender, EventArgs e)
+        private void txtCodVendedor_KeyDown(object sender, KeyEventArgs e)
         {
-            if (txtRazaoSocial.Text.Length > 0)
+            if (e.KeyCode == Keys.Enter)
             {
-                if (MessageBox.Show("Confirma a exclusão do registro ?", "Atenção !", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (txtCodVendedor.Text.Length > 0)
                 {
-                    ClienteDAO clientedao = new ClienteDAO();
-                    if (clientedao.Excluir(int.Parse(txtCodCliente.Text)) == false)
-                    {
-                        txtCodCliente.Focus();
-                        return;
-                    }
-                    else
-                    {
-                        Funcoes.Limpar(this);
-                        Funcoes.HabilitarBotoes(this, "Novo");
-                        txtCodCliente.Focus();
-                    }
+                    BuscarRegistro();
                 }
             }
+        }
+
+        private void btnSair_Click(object sender, EventArgs e)
+        {
+            Dispose();
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
@@ -288,9 +288,9 @@ namespace Salutem
                     Funcoes.HabilitarCampos(this, false);
                     Funcoes.Limpar(this);
                     Funcoes.HabilitarBotoes(this, "Novo");
-                    txtCodCliente.Enabled = true;
+                    txtCodVendedor.Enabled = true;
                     txtPesquisa.Enabled = true;
-                    txtCodCliente.Focus();
+                    txtCodVendedor.Focus();
                     Operacao = "";
                 }
                 else
@@ -307,9 +307,9 @@ namespace Salutem
                     Funcoes.HabilitarCampos(this, false);
                     Funcoes.Limpar(this);
                     Funcoes.HabilitarBotoes(this, "Novo");
-                    txtCodCliente.Enabled = true;
+                    txtCodVendedor.Enabled = true;
                     txtPesquisa.Enabled = true;
-                    txtCodCliente.Focus();
+                    txtCodVendedor.Focus();
                     Operacao = "";
                 }
                 else

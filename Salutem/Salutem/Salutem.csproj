@@ -49,12 +49,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class\ValidaCNPJ.cs" />
+    <Compile Include="Class\ValidaCPF.cs" />
     <Compile Include="DAO\ClienteDAO.cs" />
+    <Compile Include="DAO\VendedorDAO.cs" />
     <Compile Include="FrmCadastroClientes.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmCadastroClientes.Designer.cs">
       <DependentUpon>FrmCadastroClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCadastroVendedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCadastroVendedor.Designer.cs">
+      <DependentUpon>FrmCadastroVendedor.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmMenu.cs">
       <SubType>Form</SubType>
@@ -69,6 +77,9 @@
     <Compile Include="Util\Funcoes.cs" />
     <EmbeddedResource Include="FrmCadastroClientes.resx">
       <DependentUpon>FrmCadastroClientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCadastroVendedor.resx">
+      <DependentUpon>FrmCadastroVendedor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMenu.resx">
       <DependentUpon>FrmMenu.cs</DependentUpon>

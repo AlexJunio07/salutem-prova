@@ -6,9 +6,6 @@ using System.Threading.Tasks;
 
 namespace ValidacaoCNPJ
 {
-
-    //Realiza a validação do CNPJ
-
     public static class ValidaCNPJ
     {
 
