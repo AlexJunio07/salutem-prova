@@ -80,6 +80,57 @@ namespace Salutem.DAO
             }
         }
 
+        public bool Excluir(int cod_cliente)
+        {
+            string sql = "DELETE FROM TB_CLIENTES WHERE COD_CLIENTE = @cod_cliente";
+
+            using (MySqlConnection conn = new MySqlConnection(conStr))
+            {
+                try
+                {
+                    conn.Open();
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@cod_cliente", cod_cliente);
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Cliente excluido com sucesso!", "Exclusão", 0, MessageBoxIcon.Exclamation);
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao excluir o registro: " + ex.Message);
+                    return false;
+                }
+                finally
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+        public Cliente ValidarCNPJ(string cnpj_cliente)
+        {
+            Cliente cliente = new Cliente();
+            string sql = "SELECT COD_CLIENTE, CNPJ_CLIENTE FROM TB_CLIENTES WHERE CNPJ_CLIENTE = @CNPJ_CLIENTE";
+
+            using (MySqlConnection conn = new MySqlConnection(conStr))
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                cmd.Parameters.AddWithValue("@CNPJ_CLIENTE", cnpj_cliente);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    cliente.cod_cliente = int.Parse(reader["COD_CLIENTE"].ToString());
+                    cliente.cnpj = reader["CNPJ_CLIENTE"].ToString();
+                }
+                conn.Close();
+            }
+            return cliente;
+        }
+
         public Cliente PesquisarCodCliente(int cod_cliente)
         {
             Cliente cliente = new Cliente();

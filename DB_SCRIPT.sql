@@ -4,7 +4,7 @@ USE salutem;
 
 CREATE TABLE salutem.tb_clientes (
   cod_cliente INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  cnpj_cliente VARCHAR(14) NOT NULL,
+  cnpj_cliente VARCHAR(18) NOT NULL,
   razao_social_cliente varchar(255) not null,
   latitude_cliente varchar(255),
   longitude_cliente varchar(255))

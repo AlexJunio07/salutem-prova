@@ -13,6 +13,5 @@ namespace Salutem.Model
         public string nome_vendedor { get; set; }
         public string latitude { get; set; }
         public string longitude { get; set; }
-
     }
 }

@@ -108,7 +108,7 @@ namespace Salutem
                 MessageBox.Show("Código do cliente não encontrado !", "Atenção");
 
         }
-        
+
         private void LevarID()
         {
             if (dgvDados.RowCount > 0)
@@ -122,7 +122,10 @@ namespace Salutem
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
-
+            if (mskCNPJ.Text == "00.000.000/000")
+            {
+                MessageBox.Show("Test");
+            }
             if (ValidarCampos() == true)
             {
                 Cliente cliente = new Cliente();
@@ -137,20 +140,35 @@ namespace Salutem
                 {
                     if (ValidacaoCNPJ.ValidaCNPJ.IsCnpj(mskCNPJ.Text))
                     {
-                        if (clientedao.Inserir(cliente) == false)
+                        //clientedao.ValidarCNPJ(mskCNPJ.Text);
+                        cliente = clientedao.ValidarCNPJ(this.mskCNPJ.Text);
+                        if (cliente.cod_cliente > 0)
                         {
-                            mskCNPJ.Focus();
-                            return;
+                            MessageBox.Show("Já existe um cliente cadastrado com este numero de CNPJ!");
                         }
                         else
                         {
-                            Funcoes.HabilitarCampos(this, false);
-                            Funcoes.Limpar(this);
-                            Funcoes.HabilitarBotoes(this, "Novo");
-                            txtCodCliente.Enabled = true;
-                            txtPesquisa.Enabled = true;
-                            Operacao = "";
-                            txtCodCliente.Focus();
+                            //Recebe os valor apos a confirmação
+                            cliente.cnpj = mskCNPJ.Text;
+                            cliente.razao_social = txtRazaoSocial.Text;
+                            cliente.latitude = txtLatitude.Text;
+                            cliente.longitude = txtLongitude.Text;
+
+                            if (clientedao.Inserir(cliente) == false)
+                            {
+                                mskCNPJ.Focus();
+                                return;
+                            }
+                            else
+                            {
+                                Funcoes.HabilitarCampos(this, false);
+                                Funcoes.Limpar(this);
+                                Funcoes.HabilitarBotoes(this, "Novo");
+                                txtCodCliente.Enabled = true;
+                                txtPesquisa.Enabled = true;
+                                Operacao = "";
+                                txtCodCliente.Focus();
+                            }
                         }
                     }
                     else
@@ -186,7 +204,7 @@ namespace Salutem
                     }
                 }
 
-                
+
             }
         }
 
@@ -258,6 +276,28 @@ namespace Salutem
         private void dgvDados_DoubleClick(object sender, EventArgs e)
         {
             LevarID();
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            if (txtRazaoSocial.Text.Length > 0)
+            {
+                if (MessageBox.Show("Confirma a exclusão do registro ?", "Atenção !", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    ClienteDAO clientedao = new ClienteDAO();
+                    if (clientedao.Excluir(int.Parse(txtCodCliente.Text)) == false)
+                    {
+                        txtCodCliente.Focus();
+                        return;
+                    }
+                    else
+                    {
+                        Funcoes.Limpar(this);
+                        Funcoes.HabilitarBotoes(this, "Novo");
+                        txtCodCliente.Focus();
+                    }
+                }
+            }
         }
     }
 }
