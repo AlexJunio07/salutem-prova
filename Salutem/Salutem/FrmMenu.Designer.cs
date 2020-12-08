@@ -91,6 +91,7 @@
             this.exportaçãDeClientesToolStripMenuItem.Name = "exportaçãDeClientesToolStripMenuItem";
             this.exportaçãDeClientesToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.exportaçãDeClientesToolStripMenuItem.Text = "Exportação de Clientes";
+            this.exportaçãDeClientesToolStripMenuItem.Click += new System.EventHandler(this.exportaçãDeClientesToolStripMenuItem_Click);
             // 
             // exportaçãoDeVendedoresToolStripMenuItem
             // 

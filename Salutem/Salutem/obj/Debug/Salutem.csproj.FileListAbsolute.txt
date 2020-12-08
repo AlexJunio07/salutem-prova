@@ -30,3 +30,5 @@ A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\bin\Debug\Renci.SshNe
 A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\bin\Debug\MySql.Data.xml
 A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\obj\Debug\Salutem.exe
 A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\obj\Debug\Salutem.pdb
+A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\obj\Debug\Salutem.csprojResolveAssemblyReference.cache
+A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\obj\Debug\Salutem.FrmExportClientes.resources

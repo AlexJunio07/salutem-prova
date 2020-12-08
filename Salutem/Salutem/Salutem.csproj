@@ -64,6 +64,12 @@
     <Compile Include="FrmCadastroVendedor.Designer.cs">
       <DependentUpon>FrmCadastroVendedor.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmExportClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmExportClientes.Designer.cs">
+      <DependentUpon>FrmExportClientes.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +86,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmCadastroVendedor.resx">
       <DependentUpon>FrmCadastroVendedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmExportClientes.resx">
+      <DependentUpon>FrmExportClientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMenu.resx">
       <DependentUpon>FrmMenu.cs</DependentUpon>
