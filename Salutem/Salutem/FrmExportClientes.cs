@@ -1,4 +1,5 @@
 ﻿using Salutem.DAO;
+using Salutem.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,12 +25,83 @@ namespace Salutem
 
         string conStr = ConfigurationManager.ConnectionStrings["conMySql"].ConnectionString;
 
+        private void BuscarDados()
+        {
+            try
+            {
+                ClienteDAO clientedao = new ClienteDAO();
+
+                if (rdbAscendente.Checked == true)
+                {
+                    if (rdbCodCliente.Checked == true)
+                    {
+
+                        if (txtCodCliente.Text == "")
+                        {
+                            bindingSource1.DataSource = clientedao.BuscarCodCliente(0, "ASC");
+                        }
+                        else
+                        {
+                            bindingSource1.DataSource = clientedao.BuscarCodCliente(int.Parse(txtCodCliente.Text), "ASC");
+                        }
+
+                        dgvExport.AutoGenerateColumns = false;
+                        dgvExport.DataSource = bindingSource1;
+                    }
+                    else
+                    {
+                        bindingSource1.DataSource = clientedao.BuscarRazaoSocial(txtRazaoSocial.Text, "ASC");
+                        dgvExport.AutoGenerateColumns = false;
+                        dgvExport.DataSource = bindingSource1;
+                    }
+                }
+                else
+                {
+                    if (rdbCodCliente.Checked == true)
+                    {
+
+                        if (txtCodCliente.Text == "")
+                        {
+                            bindingSource1.DataSource = clientedao.BuscarCodCliente(0, "DESC");
+                        }
+                        else
+                        {
+                            bindingSource1.DataSource = clientedao.BuscarCodCliente(int.Parse(txtCodCliente.Text), "ASC");
+                        }
+
+                        dgvExport.AutoGenerateColumns = false;
+                        dgvExport.DataSource = bindingSource1;
+                    }
+
+                    else
+                    {
+                        bindingSource1.DataSource = clientedao.BuscarRazaoSocial(txtRazaoSocial.Text, "DESC");
+                        dgvExport.AutoGenerateColumns = false;
+                        dgvExport.DataSource = bindingSource1;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro: " + ex.Message);
+            }
+        }
+
         private void btnExportTxt_Click(object sender, EventArgs e)
         {
 
             if (txtCaminho.Text == "")
             {
                 MessageBox.Show("Selecione o caminho do arquivo.", "Atenção", 0, MessageBoxIcon.Warning);
+                using (var pasta = new FolderBrowserDialog())
+                {
+                    DialogResult result = pasta.ShowDialog();
+
+                    if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(pasta.SelectedPath))
+                    {
+                        txtCaminho.Text = pasta.SelectedPath;
+                    }
+                }
             }
             else
             {
@@ -144,52 +216,7 @@ namespace Salutem
 
         private void btnPesquisar_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (rdbAscendente.Checked == true)
-                {
-                    if (rdbCodCliente.Checked == true)
-                    {
-                        ClienteDAO clientedao = new ClienteDAO();
-
-                        if (txtCodCliente.Text == "")
-                        {
-                            bindingSource1.DataSource = clientedao.BuscarCodCliente(0, "ASC");
-                        }
-                        else
-                        {
-                            bindingSource1.DataSource = clientedao.BuscarCodCliente(int.Parse(txtCodCliente.Text), "ASC");
-                        }
-
-                        dgvExport.AutoGenerateColumns = false;
-                        dgvExport.DataSource = bindingSource1;
-                    }
-                }
-                else
-                {
-                    if (rdbCodCliente.Checked == true)
-                    {
-                        ClienteDAO clientedao = new ClienteDAO();
-
-                        if (txtCodCliente.Text == "")
-                        {
-                            bindingSource1.DataSource = clientedao.BuscarCodCliente(0, "DESC");
-                        }
-                        else
-                        {
-                            bindingSource1.DataSource = clientedao.BuscarCodCliente(int.Parse(txtCodCliente.Text), "ASC");
-                        }
-
-                        dgvExport.AutoGenerateColumns = false;
-                        dgvExport.DataSource = bindingSource1;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro: " + ex.Message);
-            }
-
+            BuscarDados();
         }
 
         private void rdbRazaoSocial_CheckedChanged(object sender, EventArgs e)
@@ -202,6 +229,27 @@ namespace Salutem
         {
             txtCodCliente.Enabled = true;
             txtRazaoSocial.Enabled = false;
+        }
+
+        private void txtCodCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Funcoes.DigitarNumeros(e);
+        }
+
+        private void txtCodCliente_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                BuscarDados();
+            }
+        }
+
+        private void txtRazaoSocial_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                BuscarDados();
+            }
         }
     }
 }

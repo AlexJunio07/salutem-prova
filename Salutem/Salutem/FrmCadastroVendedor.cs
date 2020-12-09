@@ -318,5 +318,10 @@ namespace Salutem
                 }
             }
         }
+
+        private void txtCodVendedor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Funcoes.DigitarNumeros(e);
+        }
     }
 }

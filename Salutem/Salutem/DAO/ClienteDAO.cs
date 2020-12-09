@@ -202,12 +202,21 @@ namespace Salutem.DAO
             return lista;
         }
 
-        public List<Cliente> BuscarRazaoSocial(string razao_social_cliente)
+        public List<Cliente> BuscarRazaoSocial(string razao_social_cliente, string ordem)
         {
             List<Cliente> lista = new List<Cliente>();
+            string sql = string.Empty;
 
-            string sql = "SELECT COD_CLIENTE, CNPJ_CLIENTE, RAZAO_SOCIAL_CLIENTE, LATITUDE_CLIENTE, LONGITUDE_CLIENTE ";
-            sql = sql + "FROM TB_CLIENTES WHERE RAZAO_SOCIAL_CLIENTE LIKE @razao_social ORDER BY RAZAO_SOCIAL_CLIENTE";
+            if (ordem == "ASC")
+            {
+                sql = "SELECT COD_CLIENTE, CNPJ_CLIENTE, RAZAO_SOCIAL_CLIENTE, LATITUDE_CLIENTE, LONGITUDE_CLIENTE ";
+                sql = sql + "FROM TB_CLIENTES WHERE RAZAO_SOCIAL_CLIENTE LIKE @razao_social ORDER BY RAZAO_SOCIAL_CLIENTE ASC";
+            }
+            else
+            {
+                sql = "SELECT COD_CLIENTE, CNPJ_CLIENTE, RAZAO_SOCIAL_CLIENTE, LATITUDE_CLIENTE, LONGITUDE_CLIENTE ";
+                sql = sql + "FROM TB_CLIENTES WHERE RAZAO_SOCIAL_CLIENTE LIKE @razao_social ORDER BY RAZAO_SOCIAL_CLIENTE DESC";
+            }
 
             using (MySqlConnection conn = new MySqlConnection(conStr))
             {

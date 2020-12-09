@@ -244,7 +244,7 @@ namespace Salutem
                 if (txtPesquisa.Text.Length > 0)
                 {
                     ClienteDAO clientedao = new ClienteDAO();
-                    bindingSource1.DataSource = clientedao.BuscarRazaoSocial(txtPesquisa.Text);
+                    bindingSource1.DataSource = clientedao.BuscarRazaoSocial(txtPesquisa.Text, "ASC");
 
                     dgvDados.AutoGenerateColumns = false;
                     dgvDados.DataSource = bindingSource1;
@@ -318,6 +318,11 @@ namespace Salutem
                     tabControl1.SelectedTab = tbpCadastro;
                 }
             }
+        }
+
+        private void txtCodCliente_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Funcoes.DigitarNumeros(e);
         }
     }
 }
