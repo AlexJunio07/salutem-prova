@@ -130,7 +130,7 @@ namespace Salutem.DAO
             }
             return cliente;
         }
-       
+
         public Cliente PesquisarCodCliente(int cod_cliente)
         {
             Cliente cliente = new Cliente();
@@ -155,7 +155,54 @@ namespace Salutem.DAO
             return cliente;
         }
 
-        public List<Cliente> BuscarRazaoSocial(String razao_social_cliente)
+        public List<Cliente> BuscarCodCliente(int cod_cliente, string ordem)
+        {
+            List<Cliente> lista = new List<Cliente>();
+
+            string sql = string.Empty;
+
+            if (cod_cliente == 0)
+            {
+                sql = "SELECT COD_CLIENTE, CNPJ_CLIENTE, RAZAO_SOCIAL_CLIENTE, LATITUDE_CLIENTE, LONGITUDE_CLIENTE " +
+                    "FROM TB_CLIENTES ORDER BY COD_CLIENTE " + ordem;
+            }
+
+            else if (ordem == "ASC")
+            {
+                sql = "SELECT COD_CLIENTE, CNPJ_CLIENTE, RAZAO_SOCIAL_CLIENTE, LATITUDE_CLIENTE, LONGITUDE_CLIENTE " +
+                    "FROM TB_CLIENTES WHERE COD_CLIENTE = @COD_CLIENTE ORDER BY COD_CLIENTE " + ordem;
+            }
+            else
+            {
+                sql = "SELECT COD_CLIENTE, CNPJ_CLIENTE, RAZAO_SOCIAL_CLIENTE, LATITUDE_CLIENTE, LONGITUDE_CLIENTE " +
+                    "FROM TB_CLIENTES WHERE COD_CLIENTE = @COD_CLIENTE ORDER BY COD_CLIENTE " + ordem;
+            }
+
+
+            using (MySqlConnection conn = new MySqlConnection(conStr))
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@COD_CLIENTE", cod_cliente);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Cliente cliente = new Cliente();
+                    cliente.cod_cliente = int.Parse(reader["COD_CLIENTE"].ToString());
+                    cliente.cnpj = reader["CNPJ_CLIENTE"].ToString();
+                    cliente.razao_social = reader["RAZAO_SOCIAL_CLIENTE"].ToString();
+                    cliente.latitude = reader["LATITUDE_CLIENTE"].ToString();
+                    cliente.longitude = reader["LONGITUDE_CLIENTE"].ToString();
+
+                    lista.Add(cliente);
+                }
+                conn.Close();
+            }
+            return lista;
+        }
+
+        public List<Cliente> BuscarRazaoSocial(string razao_social_cliente)
         {
             List<Cliente> lista = new List<Cliente>();
 

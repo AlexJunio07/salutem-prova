@@ -59,6 +59,7 @@ namespace Salutem
             ClienteDAO clientedao = new ClienteDAO();
             Cliente cliente = new Cliente();
 
+            //Segundo valor sempre vazio .... (ExportClientes)
             cliente = clientedao.PesquisarCodCliente(cod_cliente);
 
             if (cliente.cod_cliente > 0)
@@ -73,7 +74,7 @@ namespace Salutem
 
             }
             else
-                MessageBox.Show("Código do cliente não encontrado !", "Atenção");
+                MessageBox.Show("Código do cliente não encontrado !", "Atenção", 0, MessageBoxIcon.Warning);
 
         }
 

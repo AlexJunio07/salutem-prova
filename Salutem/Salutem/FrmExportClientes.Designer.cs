@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.btnExportTxt = new System.Windows.Forms.Button();
@@ -40,9 +40,30 @@
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtCaminho = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnAbrir = new System.Windows.Forms.Button();
+            this.btnExportCSV = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.rdbAscendente = new System.Windows.Forms.RadioButton();
+            this.rdbDecrescente = new System.Windows.Forms.RadioButton();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.rdbRazaoSocial = new System.Windows.Forms.RadioButton();
+            this.rdbCodCliente = new System.Windows.Forms.RadioButton();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtCodCliente = new System.Windows.Forms.TextBox();
+            this.txtRazaoSocial = new System.Windows.Forms.TextBox();
+            this.btnPesquisar = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExport)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -73,11 +94,11 @@
             // 
             // btnExportTxt
             // 
-            this.btnExportTxt.Location = new System.Drawing.Point(588, 606);
+            this.btnExportTxt.Location = new System.Drawing.Point(628, 606);
             this.btnExportTxt.Name = "btnExportTxt";
             this.btnExportTxt.Size = new System.Drawing.Size(121, 37);
             this.btnExportTxt.TabIndex = 7;
-            this.btnExportTxt.Text = "Exportar para TXT";
+            this.btnExportTxt.Text = "Exportar para .TXT";
             this.btnExportTxt.UseVisualStyleBackColor = true;
             this.btnExportTxt.Click += new System.EventHandler(this.btnExportTxt_Click);
             // 
@@ -92,10 +113,10 @@
             this.Column2,
             this.Column4,
             this.Column5});
-            this.dgvExport.Location = new System.Drawing.Point(12, 157);
+            this.dgvExport.Location = new System.Drawing.Point(12, 200);
             this.dgvExport.Name = "dgvExport";
             this.dgvExport.ReadOnly = true;
-            this.dgvExport.Size = new System.Drawing.Size(864, 443);
+            this.dgvExport.Size = new System.Drawing.Size(864, 400);
             this.dgvExport.TabIndex = 8;
             // 
             // Column1
@@ -109,8 +130,8 @@
             // Column3
             // 
             this.Column3.DataPropertyName = "CNPJ";
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            this.Column3.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
+            this.Column3.DefaultCellStyle = dataGridViewCellStyle7;
             this.Column3.HeaderText = "CNPJ";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
@@ -140,11 +161,196 @@
             this.Column5.ReadOnly = true;
             this.Column5.Width = 150;
             // 
+            // txtCaminho
+            // 
+            this.txtCaminho.Enabled = false;
+            this.txtCaminho.Location = new System.Drawing.Point(123, 615);
+            this.txtCaminho.Name = "txtCaminho";
+            this.txtCaminho.Size = new System.Drawing.Size(343, 20);
+            this.txtCaminho.TabIndex = 9;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 618);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(105, 13);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Caminho do Arquivo:";
+            // 
+            // btnAbrir
+            // 
+            this.btnAbrir.Location = new System.Drawing.Point(472, 613);
+            this.btnAbrir.Name = "btnAbrir";
+            this.btnAbrir.Size = new System.Drawing.Size(75, 23);
+            this.btnAbrir.TabIndex = 11;
+            this.btnAbrir.Text = "Abrir";
+            this.btnAbrir.UseVisualStyleBackColor = true;
+            this.btnAbrir.Click += new System.EventHandler(this.btnAbrir_Click);
+            // 
+            // btnExportCSV
+            // 
+            this.btnExportCSV.Location = new System.Drawing.Point(755, 606);
+            this.btnExportCSV.Name = "btnExportCSV";
+            this.btnExportCSV.Size = new System.Drawing.Size(121, 37);
+            this.btnExportCSV.TabIndex = 12;
+            this.btnExportCSV.Text = "Exportar para .CSV";
+            this.btnExportCSV.UseVisualStyleBackColor = true;
+            this.btnExportCSV.Click += new System.EventHandler(this.btnExportCSV_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnPesquisar);
+            this.groupBox1.Controls.Add(this.txtRazaoSocial);
+            this.groupBox1.Controls.Add(this.txtCodCliente);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.panel2);
+            this.groupBox1.Controls.Add(this.panel1);
+            this.groupBox1.Location = new System.Drawing.Point(15, 70);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(861, 124);
+            this.groupBox1.TabIndex = 13;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Filtro";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 4);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(102, 13);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Tipo de Ordenação:";
+            // 
+            // rdbAscendente
+            // 
+            this.rdbAscendente.AutoSize = true;
+            this.rdbAscendente.Checked = true;
+            this.rdbAscendente.Location = new System.Drawing.Point(111, 2);
+            this.rdbAscendente.Name = "rdbAscendente";
+            this.rdbAscendente.Size = new System.Drawing.Size(82, 17);
+            this.rdbAscendente.TabIndex = 1;
+            this.rdbAscendente.TabStop = true;
+            this.rdbAscendente.Text = "Ascendente";
+            this.rdbAscendente.UseVisualStyleBackColor = true;
+            // 
+            // rdbDecrescente
+            // 
+            this.rdbDecrescente.AutoSize = true;
+            this.rdbDecrescente.Location = new System.Drawing.Point(199, 2);
+            this.rdbDecrescente.Name = "rdbDecrescente";
+            this.rdbDecrescente.Size = new System.Drawing.Size(86, 17);
+            this.rdbDecrescente.TabIndex = 2;
+            this.rdbDecrescente.Text = "Decrescente";
+            this.rdbDecrescente.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.rdbAscendente);
+            this.panel1.Controls.Add(this.rdbDecrescente);
+            this.panel1.Location = new System.Drawing.Point(6, 22);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(849, 25);
+            this.panel1.TabIndex = 3;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.rdbRazaoSocial);
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.rdbCodCliente);
+            this.panel2.Location = new System.Drawing.Point(6, 53);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(849, 25);
+            this.panel2.TabIndex = 4;
+            // 
+            // rdbRazaoSocial
+            // 
+            this.rdbRazaoSocial.AutoSize = true;
+            this.rdbRazaoSocial.Location = new System.Drawing.Point(219, 4);
+            this.rdbRazaoSocial.Name = "rdbRazaoSocial";
+            this.rdbRazaoSocial.Size = new System.Drawing.Size(88, 17);
+            this.rdbRazaoSocial.TabIndex = 7;
+            this.rdbRazaoSocial.Text = "Razão Social";
+            this.rdbRazaoSocial.UseVisualStyleBackColor = true;
+            this.rdbRazaoSocial.CheckedChanged += new System.EventHandler(this.rdbRazaoSocial_CheckedChanged);
+            // 
+            // rdbCodCliente
+            // 
+            this.rdbCodCliente.AutoSize = true;
+            this.rdbCodCliente.Checked = true;
+            this.rdbCodCliente.Location = new System.Drawing.Point(120, 3);
+            this.rdbCodCliente.Name = "rdbCodCliente";
+            this.rdbCodCliente.Size = new System.Drawing.Size(93, 17);
+            this.rdbCodCliente.TabIndex = 6;
+            this.rdbCodCliente.TabStop = true;
+            this.rdbCodCliente.Text = "Código Cliente";
+            this.rdbCodCliente.UseVisualStyleBackColor = true;
+            this.rdbCodCliente.CheckedChanged += new System.EventHandler(this.rdbCodCliente_CheckedChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 6);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(111, 13);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Tipo de Classificação:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(9, 91);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(93, 13);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "Código de Cliente:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(225, 91);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(73, 13);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Razão Social:";
+            // 
+            // txtCodCliente
+            // 
+            this.txtCodCliente.Location = new System.Drawing.Point(108, 88);
+            this.txtCodCliente.Name = "txtCodCliente";
+            this.txtCodCliente.Size = new System.Drawing.Size(111, 20);
+            this.txtCodCliente.TabIndex = 6;
+            // 
+            // txtRazaoSocial
+            // 
+            this.txtRazaoSocial.Enabled = false;
+            this.txtRazaoSocial.Location = new System.Drawing.Point(304, 88);
+            this.txtRazaoSocial.Name = "txtRazaoSocial";
+            this.txtRazaoSocial.Size = new System.Drawing.Size(470, 20);
+            this.txtRazaoSocial.TabIndex = 7;
+            // 
+            // btnPesquisar
+            // 
+            this.btnPesquisar.Location = new System.Drawing.Point(780, 86);
+            this.btnPesquisar.Name = "btnPesquisar";
+            this.btnPesquisar.Size = new System.Drawing.Size(75, 23);
+            this.btnPesquisar.TabIndex = 8;
+            this.btnPesquisar.Text = "Pesquisar";
+            this.btnPesquisar.UseVisualStyleBackColor = true;
+            this.btnPesquisar.Click += new System.EventHandler(this.btnPesquisar_Click);
+            // 
             // FrmExportClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(888, 655);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.btnExportCSV);
+            this.Controls.Add(this.btnAbrir);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtCaminho);
             this.Controls.Add(this.dgvExport);
             this.Controls.Add(this.btnExportTxt);
             this.Controls.Add(this.tableLayoutPanel1);
@@ -156,7 +362,14 @@
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExport)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -172,5 +385,23 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.TextBox txtCaminho;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnAbrir;
+        private System.Windows.Forms.Button btnExportCSV;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rdbDecrescente;
+        private System.Windows.Forms.RadioButton rdbAscendente;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.RadioButton rdbRazaoSocial;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.RadioButton rdbCodCliente;
+        private System.Windows.Forms.TextBox txtRazaoSocial;
+        private System.Windows.Forms.TextBox txtCodCliente;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnPesquisar;
     }
 }
