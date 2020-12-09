@@ -223,12 +223,14 @@ namespace Salutem
         {
             txtCodCliente.Enabled = false;
             txtRazaoSocial.Enabled = true;
+            txtCodCliente.Text = string.Empty;
         }
 
         private void rdbCodCliente_CheckedChanged(object sender, EventArgs e)
         {
             txtCodCliente.Enabled = true;
             txtRazaoSocial.Enabled = false;
+            txtRazaoSocial.Text = string.Empty;
         }
 
         private void txtCodCliente_KeyPress(object sender, KeyPressEventArgs e)
