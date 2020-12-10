@@ -34,5 +34,16 @@ namespace Salutem
             FrmExportClientes frmexportclientes = new FrmExportClientes();
             frmexportclientes.ShowDialog();
         }
+
+        private void exportaçãoDeVendedoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmExportVendedores frmexportvendedores = new FrmExportVendedores();
+            frmexportvendedores.ShowDialog();
+        }
+
+        private void sairToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

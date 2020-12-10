@@ -155,12 +155,69 @@ namespace Salutem.DAO
             return vendedor;
         }
 
-        public List<Vendedor> BuscarRazaoSocial(String nome_vendedor)
+        public List<Vendedor> BuscarCodVendedor(int cod_vendedor, string ordem)
         {
             List<Vendedor> lista = new List<Vendedor>();
 
-            string sql = "SELECT COD_VENDEDOR, CPF_VENDEDOR, NOME_VENDEDOR, LATITUDE_VENDEDOR, LONGITUDE_VENDEDOR ";
-            sql = sql + "FROM TB_VENDEDORES WHERE NOME_VENDEDOR LIKE @nome ORDER BY NOME_VENDEDOR";
+            string sql = string.Empty;
+
+            if (cod_vendedor == 0)
+            {
+                sql = "SELECT COD_VENDEDOR, CPF_VENDEDOR, NOME_VENDEDOR, LATITUDE_VENDEDOR, LONGITUDE_VENDEDOR " +
+                    "FROM TB_VENDEDORES ORDER BY COD_VENDEDOR " + ordem;
+            }
+
+            else if (ordem == "ASC")
+            {
+                sql = "SELECT COD_VENDEDOR, CPF_VENDEDOR, NOME_VENDEDOR, LATITUDE_VENDEDOR, LONGITUDE_VENDEDOR " +
+                    "FROM TB_VENDEDORES WHERE COD_VENDEDOR = @COD_VENDEDOR ORDER BY COD_VENDEDOR " + ordem;
+            }
+            else
+            {
+                sql = "SELECT COD_VENDEDOR, CPF_VENDEDOR, NOME_VENDEDOR, LATITUDE_VENDEDOR, LONGITUDE_VENDEDOR " +
+                    "FROM TB_VENDEDORES WHERE COD_VENDEDOR = @COD_VENDEDOR ORDER BY COD_VENDEDOR " + ordem;
+            }
+
+
+            using (MySqlConnection conn = new MySqlConnection(conStr))
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@COD_VENDEDOR", cod_vendedor);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Vendedor vendedor = new Vendedor();
+                    vendedor.cod_vendedor = int.Parse(reader["COD_VENDEDOR"].ToString());
+                    vendedor.cpf = reader["CPF_VENDEDOR"].ToString();
+                    vendedor.nome = reader["NOME_VENDEDOR"].ToString();
+                    vendedor.latitude = reader["LATITUDE_VENDEDOR"].ToString();
+                    vendedor.longitude = reader["LONGITUDE_VENDEDOR"].ToString();
+
+                    lista.Add(vendedor);
+                }
+                conn.Close();
+            }
+            return lista;
+        }
+
+        public List<Vendedor> BuscarNome(string nome_vendedor, string ordem)
+        {
+            List<Vendedor> lista = new List<Vendedor>();
+
+            string sql = string.Empty;
+
+            if (ordem == "ASC")
+            {
+                sql = "SELECT COD_VENDEDOR, CPF_VENDEDOR, NOME_VENDEDOR, LATITUDE_VENDEDOR, LONGITUDE_VENDEDOR ";
+                sql = sql + "FROM TB_VENDEDORES WHERE NOME_VENDEDOR LIKE @nome ORDER BY NOME_VENDEDOR ASC";
+            }
+            else
+            {
+                sql = "SELECT COD_VENDEDOR, CPF_VENDEDOR, NOME_VENDEDOR, LATITUDE_VENDEDOR, LONGITUDE_VENDEDOR ";
+                sql = sql + "FROM TB_VENDEDORES WHERE NOME_VENDEDOR LIKE @nome ORDER BY NOME_VENDEDOR DESC";
+            }
 
             using (MySqlConnection conn = new MySqlConnection(conStr))
             {

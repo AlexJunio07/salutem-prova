@@ -98,6 +98,7 @@
             this.exportaçãoDeVendedoresToolStripMenuItem.Name = "exportaçãoDeVendedoresToolStripMenuItem";
             this.exportaçãoDeVendedoresToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.exportaçãoDeVendedoresToolStripMenuItem.Text = "Exportação de Vendedores";
+            this.exportaçãoDeVendedoresToolStripMenuItem.Click += new System.EventHandler(this.exportaçãoDeVendedoresToolStripMenuItem_Click);
             // 
             // executarToolStripMenuItem
             // 
@@ -118,6 +119,7 @@
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
             this.sairToolStripMenuItem.Size = new System.Drawing.Size(38, 20);
             this.sairToolStripMenuItem.Text = "Sair";
+            this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click);
             // 
             // FrmMenu
             // 

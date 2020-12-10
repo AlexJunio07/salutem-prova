@@ -249,7 +249,7 @@ namespace Salutem
                 if (txtPesquisa.Text.Length > 0)
                 {
                     VendedorDAO vendedordao = new VendedorDAO();
-                    bindingSource1.DataSource = vendedordao.BuscarRazaoSocial(txtPesquisa.Text);
+                    bindingSource1.DataSource = vendedordao.BuscarNome(txtPesquisa.Text, "ASC");
 
                     dgvDados.AutoGenerateColumns = false;
                     dgvDados.DataSource = bindingSource1;

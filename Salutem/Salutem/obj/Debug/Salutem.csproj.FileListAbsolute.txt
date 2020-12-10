@@ -14,11 +14,6 @@ A:\SISTEMAS\SISTEMAS\Salutem\Salutem\Salutem\bin\Debug\BouncyCastle.Crypto.dll
 A:\SISTEMAS\SISTEMAS\Salutem\Salutem\Salutem\bin\Debug\Ubiety.Dns.Core.dll
 A:\SISTEMAS\SISTEMAS\Salutem\Salutem\Salutem\bin\Debug\Renci.SshNet.dll
 A:\SISTEMAS\SISTEMAS\Salutem\Salutem\Salutem\bin\Debug\MySql.Data.xml
-A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\obj\Debug\Salutem.FrmCadastroClientes.resources
-A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\obj\Debug\Salutem.FrmCadastroVendedor.resources
-A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\obj\Debug\Salutem.FrmMenu.resources
-A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\obj\Debug\Salutem.Properties.Resources.resources
-A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\obj\Debug\Salutem.csproj.GenerateResource.Cache
 A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\bin\Debug\Salutem.exe.config
 A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\bin\Debug\Salutem.exe
 A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\bin\Debug\Salutem.pdb
@@ -28,7 +23,12 @@ A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\bin\Debug\BouncyCastl
 A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\bin\Debug\Ubiety.Dns.Core.dll
 A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\bin\Debug\Renci.SshNet.dll
 A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\bin\Debug\MySql.Data.xml
+A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\obj\Debug\Salutem.FrmCadastroClientes.resources
+A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\obj\Debug\Salutem.FrmCadastroVendedor.resources
+A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\obj\Debug\Salutem.FrmExportClientes.resources
+A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\obj\Debug\Salutem.FrmExportVendedores.resources
+A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\obj\Debug\Salutem.FrmMenu.resources
+A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\obj\Debug\Salutem.Properties.Resources.resources
+A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\obj\Debug\Salutem.csproj.GenerateResource.Cache
 A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\obj\Debug\Salutem.exe
 A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\obj\Debug\Salutem.pdb
-A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\obj\Debug\Salutem.csprojResolveAssemblyReference.cache
-A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\obj\Debug\Salutem.FrmExportClientes.resources

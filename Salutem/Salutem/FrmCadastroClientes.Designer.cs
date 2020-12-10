@@ -292,10 +292,10 @@
             // txtPesquisa
             // 
             this.txtPesquisa.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtPesquisa.Location = new System.Drawing.Point(89, 318);
+            this.txtPesquisa.Location = new System.Drawing.Point(124, 318);
             this.txtPesquisa.MaxLength = 50;
             this.txtPesquisa.Name = "txtPesquisa";
-            this.txtPesquisa.Size = new System.Drawing.Size(588, 20);
+            this.txtPesquisa.Size = new System.Drawing.Size(553, 20);
             this.txtPesquisa.TabIndex = 2;
             this.txtPesquisa.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPesquisa_KeyDown);
             // 
@@ -304,9 +304,9 @@
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(6, 321);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(77, 13);
+            this.label12.Size = new System.Drawing.Size(112, 13);
             this.label12.TabIndex = 1;
-            this.label12.Text = "Digite o Nome:";
+            this.label12.Text = "Digite a Razão Social:";
             // 
             // dgvDados
             // 
