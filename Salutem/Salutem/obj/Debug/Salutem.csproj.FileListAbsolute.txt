@@ -32,3 +32,4 @@ A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\obj\Debug\Salutem.Pro
 A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\obj\Debug\Salutem.csproj.GenerateResource.Cache
 A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\obj\Debug\Salutem.exe
 A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\obj\Debug\Salutem.pdb
+A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\obj\Debug\Salutem.csprojResolveAssemblyReference.cache

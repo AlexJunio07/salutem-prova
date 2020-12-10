@@ -161,13 +161,5 @@ namespace Salutem.Util
                 e.Handled = true;
             }
         }
-
-        public static void DigitarMoeda(KeyPressEventArgs e)
-        {
-            if (char.IsLetter(e.KeyChar) || char.IsSymbol(e.KeyChar) || char.IsWhiteSpace(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
     }
 }

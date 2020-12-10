@@ -1,4 +1,5 @@
 ﻿using Salutem.DAO;
+using Salutem.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -237,6 +238,19 @@ namespace Salutem
                     MessageBox.Show("Erro " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     file.Close();
                 }
+            }
+        }
+
+        private void txtCodVendedor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Funcoes.DigitarNumeros(e);
+        }
+
+        private void txtCodVendedor_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                BuscarDados();
             }
         }
     }
