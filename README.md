@@ -1,6 +1,9 @@
-# salutem-prova
--- Prova da Salutem
+# Prova da Salutem
 
 IDE: Visual Studio 2015
 Linguagem: C#
-BANCO DE DADOS: MySql
+Banco de Dados: MySql
+
+-------------------------
+Caminho para abrir o sistema: 
+salutem-prova\Salutem\Salutem\bin\Release\Salutem.exe
