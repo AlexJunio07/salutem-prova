@@ -166,13 +166,13 @@ namespace Salutem.DAO
             }
             return cliente;
         }
-                
+
         public List<Cliente> PesquisarCliente(string razao_social_cliente)
         {
             List<Cliente> lista = new List<Cliente>();
-            string sql = "SELECT C.COD_CLIENTE, C.CNPJ_CLIENTE, C.RAZAO_SOCIAL_CLIENTE, C.LATITUDE_CLIENTE, C.LONGITUDE_CLIENTE, C.DISTANCIA "+
+            string sql = "SELECT C.COD_CLIENTE, C.CNPJ_CLIENTE, C.RAZAO_SOCIAL_CLIENTE, C.LATITUDE_CLIENTE, C.LONGITUDE_CLIENTE, C.DISTANCIA " +
                     "FROM TB_CLIENTES AS C WHERE C.RAZAO_SOCIAL_CLIENTE LIKE @razao_social ORDER BY C.RAZAO_SOCIAL_CLIENTE DESC";
-          
+
             using (MySqlConnection conn = new MySqlConnection(conStr))
             {
                 conn.Open();
