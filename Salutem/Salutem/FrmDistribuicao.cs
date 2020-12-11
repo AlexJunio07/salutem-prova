@@ -50,7 +50,10 @@ namespace Salutem
 
                         //Converte para Metros
                         distancia = distancia * 1000;
-                        cliente.distancia = distancia.ToString();
+                        string valor_distancia = string.Empty;
+                        valor_distancia = distancia.ToString().Split(',')[0];
+
+                        cliente.distancia = valor_distancia;
 
                         cliente.cod_cliente = cod_cliente;
                         if (clientedao.Alterar(cliente, "DIST") == false)
