@@ -20,9 +20,7 @@ namespace Salutem
         {
             InitializeComponent();
         }
-
-        string conStr = ConfigurationManager.ConnectionStrings["conMySql"].ConnectionString;
-
+        
         private void BuscarDados()
         {
             try
@@ -140,30 +138,27 @@ namespace Salutem
             else
             {
 
-                //This line of code creates a text file for the data export.
+                //Cria o arquivo passando seu caminho
                 StreamWriter file = new System.IO.StreamWriter(txtCaminho.Text.ToString().Replace("\\", "\\\\") +
                     "\\\\export_vendedores.csv");
                 try
                 {
                     string sLine = "";
 
-                    //This for loop loops through each row in the table
+                    //Percorre todas as linhas da tabela
                     for (int r = 0; r <= dgvExport.Rows.Count - 1; r++)
                     {
-                        //This for loop loops through each column, and the row number
-                        //is passed from the for loop above.
+                        //Percorre cada coluna e o número da linha
                         for (int c = 0; c <= dgvExport.Columns.Count - 1; c++)
                         {
                             sLine = sLine + dgvExport.Rows[r].Cells[c].Value;
                             if (c != dgvExport.Columns.Count - 1)
                             {
-                                //A comma is added as a text delimiter in order
-                                //to separate each field in the text file.
-                                //You can choose another character as a delimiter.
+                                //Separador de dados
                                 sLine = sLine + ",";
                             }
                         }
-                        //The exported text is written to the text file, one line at a time.
+                        //CSV gravado
                         file.WriteLine(sLine);
                         sLine = "";
                     }
@@ -202,30 +197,27 @@ namespace Salutem
             else
             {
 
-                //This line of code creates a text file for the data export.
+                //Cria o arquivo passando seu caminho
                 StreamWriter file = new System.IO.StreamWriter(txtCaminho.Text.ToString().Replace("\\", "\\\\") +
                     "\\\\export_vendedores.txt");
                 try
                 {
                     string sLine = "";
 
-                    //This for loop loops through each row in the table
+                    //Percorre todas as linhas da tabela
                     for (int r = 0; r <= dgvExport.Rows.Count - 1; r++)
                     {
-                        //This for loop loops through each column, and the row number
-                        //is passed from the for loop above.
+                        //Percorre cada coluna e o número da linha
                         for (int c = 0; c <= dgvExport.Columns.Count - 1; c++)
                         {
                             sLine = sLine + dgvExport.Rows[r].Cells[c].Value;
                             if (c != dgvExport.Columns.Count - 1)
                             {
-                                //A comma is added as a text delimiter in order
-                                //to separate each field in the text file.
-                                //You can choose another character as a delimiter.
+                                //Separador de dados
                                 sLine = sLine + "  ";
                             }
                         }
-                        //The exported text is written to the text file, one line at a time.
+                        //TXT gravado
                         file.WriteLine(sLine);
                         sLine = "";
                     }

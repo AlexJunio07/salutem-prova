@@ -33,3 +33,4 @@ A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\obj\Debug\Salutem.csp
 A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\obj\Debug\Salutem.exe
 A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\obj\Debug\Salutem.pdb
 A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\obj\Debug\Salutem.csprojResolveAssemblyReference.cache
+A:\SISTEMAS\SISTEMAS\Salutem\salutem-prova\Salutem\Salutem\obj\Debug\Salutem.FrmDistribuicao.resources

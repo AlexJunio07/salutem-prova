@@ -12,6 +12,7 @@ namespace Salutem.DAO
 {
     class VendedorDAO
     {
+        //Conexao com o DB
         string conStr = ConfigurationManager.ConnectionStrings["conMySql"].ConnectionString;
 
         public bool Inserir(Vendedor vendedor)
@@ -155,6 +156,7 @@ namespace Salutem.DAO
             return vendedor;
         }
 
+        //Export Vendedor por Codigo
         public List<Vendedor> BuscarCodVendedor(int cod_vendedor, string ordem)
         {
             List<Vendedor> lista = new List<Vendedor>();
@@ -202,6 +204,7 @@ namespace Salutem.DAO
             return lista;
         }
 
+        //Export Vendedor por Nome
         public List<Vendedor> BuscarNome(string nome_vendedor, string ordem)
         {
             List<Vendedor> lista = new List<Vendedor>();

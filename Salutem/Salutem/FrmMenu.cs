@@ -45,5 +45,11 @@ namespace Salutem
         {
             Application.Exit();
         }
+
+        private void executarDistribuiçãoDeClientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmDistribuicao frmdistribuicao = new FrmDistribuicao();
+            frmdistribuicao.ShowDialog();
+        }
     }
 }

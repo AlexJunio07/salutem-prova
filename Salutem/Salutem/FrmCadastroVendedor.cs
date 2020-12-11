@@ -147,7 +147,7 @@ namespace Salutem
                         vendedor = vendedordao.ValidarCPF(this.mskCPF.Text);
                         if (vendedor.cod_vendedor > 0 && vendedor.cod_vendedor != int.Parse(txtCodVendedor.Text))
                         {
-                            MessageBox.Show("Já existe um vendedor cadastrado com este numero de CPF: " + mskCPF.Text);
+                            MessageBox.Show("Já existe um vendedor cadastrado com este numero de CPF: " + mskCPF.Text, "Atenção", 0, MessageBoxIcon.Warning);
                         }
                         else
                         {

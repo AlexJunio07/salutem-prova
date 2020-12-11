@@ -113,6 +113,7 @@
             this.executarDistribuiçãoDeClientesToolStripMenuItem.Name = "executarDistribuiçãoDeClientesToolStripMenuItem";
             this.executarDistribuiçãoDeClientesToolStripMenuItem.Size = new System.Drawing.Size(246, 22);
             this.executarDistribuiçãoDeClientesToolStripMenuItem.Text = "Executar Distribuição de Clientes";
+            this.executarDistribuiçãoDeClientesToolStripMenuItem.Click += new System.EventHandler(this.executarDistribuiçãoDeClientesToolStripMenuItem_Click);
             // 
             // sairToolStripMenuItem
             // 

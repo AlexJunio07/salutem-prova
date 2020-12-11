@@ -59,7 +59,6 @@ namespace Salutem
             ClienteDAO clientedao = new ClienteDAO();
             Cliente cliente = new Cliente();
 
-            //Segundo valor sempre vazio .... (ExportClientes)
             cliente = clientedao.PesquisarCodCliente(cod_cliente);
 
             if (cliente.cod_cliente > 0)
@@ -148,7 +147,7 @@ namespace Salutem
                         cliente = clientedao.ValidarCNPJ(this.mskCNPJ.Text);
                         if (cliente.cod_cliente > 0 && cliente.cod_cliente != int.Parse(txtCodCliente.Text))
                         {
-                            MessageBox.Show("Já existe um cliente cadastrado com este numero de CNPJ: " + mskCNPJ.Text);
+                            MessageBox.Show("Já existe um cliente cadastrado com este numero de CNPJ: " + mskCNPJ.Text, "Atenção", 0, MessageBoxIcon.Warning);
                         }
                         else
                         {
@@ -159,13 +158,14 @@ namespace Salutem
                             cliente.longitude = txtLongitude.Text;
 
                             cliente.cod_cliente = int.Parse(txtCodCliente.Text);
-                            if (clientedao.Alterar(cliente) == false)
+                            if (clientedao.Alterar(cliente, "ALTERAR") == false)
                             {
                                 mskCNPJ.Focus();
                                 return;
                             }
                             else
                             {
+                                MessageBox.Show("Cliente Alterado com sucesso!", "Cliente", 0, MessageBoxIcon.Exclamation);
                                 Funcoes.HabilitarCampos(this, false);
                                 Funcoes.Limpar(this);
                                 Funcoes.HabilitarBotoes(this, "Novo");
