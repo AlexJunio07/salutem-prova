@@ -50,6 +50,7 @@ namespace Salutem
 
                         //Converte para Metros
                         distancia = distancia * 1000;
+                        //Formata a distancia
                         string valor_distancia = string.Empty;
                         valor_distancia = distancia.ToString().Split(',')[0];
 
