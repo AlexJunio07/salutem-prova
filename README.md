@@ -1,8 +1,8 @@
 # Prova da Salutem
 
-IDE: Visual Studio 2015
-Linguagem de Programação: C# (Csharp)
-Banco de Dados: MySql
+- IDE: Visual Studio 2015
+- Linguagem de Programação: C# (Csharp)
+- Banco de Dados: MySql
 
 -------------------------
 Caminho para executar o sistema: 
@@ -15,4 +15,4 @@ Observações:
 e tambem possui um arquivo (salutem.sql), 
 que ja vem com clientes e vendedores cadastrados (exceto a 
 distribuição de clientes p/ vendedores)
-- (app.config) onde está a conexao com o banco de dados
+- (App.config) onde está a conexao com o banco de dados
