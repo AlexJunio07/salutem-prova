@@ -166,8 +166,37 @@ namespace Salutem.DAO
             }
             return cliente;
         }
+                
+        public List<Cliente> PesquisarCliente(string razao_social_cliente)
+        {
+            List<Cliente> lista = new List<Cliente>();
+            string sql = "SELECT C.COD_CLIENTE, C.CNPJ_CLIENTE, C.RAZAO_SOCIAL_CLIENTE, C.LATITUDE_CLIENTE, C.LONGITUDE_CLIENTE, C.DISTANCIA "+
+                    "FROM TB_CLIENTES AS C WHERE C.RAZAO_SOCIAL_CLIENTE LIKE @razao_social ORDER BY C.RAZAO_SOCIAL_CLIENTE DESC";
+          
+            using (MySqlConnection conn = new MySqlConnection(conStr))
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@razao_social", '%' + razao_social_cliente + '%');
+                MySqlDataReader reader = cmd.ExecuteReader();
 
-        //Export Cliente por Codigo
+                while (reader.Read())
+                {
+                    Cliente cliente = new Cliente();
+                    cliente.cod_cliente = int.Parse(reader["COD_CLIENTE"].ToString());
+                    cliente.cnpj = reader["CNPJ_CLIENTE"].ToString();
+                    cliente.razao_social = reader["RAZAO_SOCIAL_CLIENTE"].ToString();
+                    cliente.latitude = reader["LATITUDE_CLIENTE"].ToString();
+                    cliente.longitude = reader["LONGITUDE_CLIENTE"].ToString();
+
+                    lista.Add(cliente);
+                }
+                conn.Close();
+            }
+            return lista;
+        }
+
+        //Export Cliente por Codigo e Lista Dist
         public List<Cliente> BuscarCodCliente(int cod_cliente, string ordem)
         {
             List<Cliente> lista = new List<Cliente>();
@@ -178,14 +207,14 @@ namespace Salutem.DAO
             {
                 sql = "SELECT C.COD_CLIENTE, C.CNPJ_CLIENTE, C.RAZAO_SOCIAL_CLIENTE, C.LATITUDE_CLIENTE, C.LONGITUDE_CLIENTE, C.DISTANCIA, " +
                     "V.COD_VENDEDOR, V.NOME_VENDEDOR " +
-                    "FROM TB_CLIENTES AS C INNER JOIN TB_VENDEDORES AS V ON C.COD_VENDEDOR  = V.COD_VENDEDOR ORDER BY C.COD_CLIENTE " + ordem;
+                    "FROM TB_CLIENTES AS C INNER JOIN TB_VENDEDORES AS V ON C.COD_VENDEDOR = V.COD_VENDEDOR ORDER BY C.COD_CLIENTE " + ordem;
             }
 
             else if (ordem == "ASC")
             {
                 sql = "SELECT C.COD_CLIENTE, C.CNPJ_CLIENTE, C.RAZAO_SOCIAL_CLIENTE, C.LATITUDE_CLIENTE, C.LONGITUDE_CLIENTE, C.DISTANCIA, " +
                     "V.COD_VENDEDOR, V.NOME_VENDEDOR " +
-                    "FROM TB_CLIENTES AS C INNER JOIN TB_VENDEDORES AS V ON C.COD_VENDEDOR  = V.COD_VENDEDOR ORDER BY C.COD_CLIENTE " + ordem;
+                    "FROM TB_CLIENTES AS C INNER JOIN TB_VENDEDORES AS V ON C.COD_VENDEDOR  = V.COD_VENDEDOR WHERE C.COD_CLIENTE = @COD_CLIENTE ORDER BY C.COD_CLIENTE " + ordem;
             }
             else
             {
@@ -221,21 +250,78 @@ namespace Salutem.DAO
             return lista;
         }
 
+        //Export Cliente por Codigo do Vendedor
+        public List<Cliente> BuscarCodVendedor(int cod_vendedor, string ordem)
+        {
+            List<Cliente> lista = new List<Cliente>();
+
+            string sql = string.Empty;
+
+            if (cod_vendedor == 0)
+            {
+                sql = "SELECT C.COD_CLIENTE, C.CNPJ_CLIENTE, C.RAZAO_SOCIAL_CLIENTE, C.LATITUDE_CLIENTE, C.LONGITUDE_CLIENTE, C.DISTANCIA, " +
+                    "V.COD_VENDEDOR, V.NOME_VENDEDOR " +
+                    "FROM TB_CLIENTES AS C INNER JOIN TB_VENDEDORES AS V ON C.COD_VENDEDOR  = V.COD_VENDEDOR ORDER BY C.COD_CLIENTE " + ordem;
+            }
+
+            else if (ordem == "ASC")
+            {
+                sql = "SELECT C.COD_CLIENTE, C.CNPJ_CLIENTE, C.RAZAO_SOCIAL_CLIENTE, C.LATITUDE_CLIENTE, C.LONGITUDE_CLIENTE, C.DISTANCIA, " +
+                    "V.COD_VENDEDOR, V.NOME_VENDEDOR " +
+                    "FROM TB_CLIENTES AS C INNER JOIN TB_VENDEDORES AS V ON C.COD_VENDEDOR  = V.COD_VENDEDOR WHERE C.COD_VENDEDOR = @COD_VENDEDOR ORDER BY C.COD_VENDEDOR " + ordem;
+            }
+            else
+            {
+                sql = "SELECT C.COD_CLIENTE, C.CNPJ_CLIENTE, C.RAZAO_SOCIAL_CLIENTE, C.LATITUDE_CLIENTE, C.LONGITUDE_CLIENTE, C.DISTANCIA, " +
+                    "V.COD_VENDEDOR, V.NOME_VENDEDOR " +
+                    "FROM TB_CLIENTES AS C INNER JOIN TB_VENDEDORES AS V ON C.COD_VENDEDOR  = V.COD_VENDEDOR ORDER BY C.COD_VENDEDOR " + ordem;
+            }
+
+
+            using (MySqlConnection conn = new MySqlConnection(conStr))
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@COD_VENDEDOR", cod_vendedor);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Cliente cliente = new Cliente();
+                    cliente.cod_cliente = int.Parse(reader["COD_CLIENTE"].ToString());
+                    cliente.cod_vendedor_fk = int.Parse(reader["COD_VENDEDOR"].ToString());
+                    cliente.nome = reader["NOME_VENDEDOR"].ToString();
+                    cliente.cnpj = reader["CNPJ_CLIENTE"].ToString();
+                    cliente.razao_social = reader["RAZAO_SOCIAL_CLIENTE"].ToString();
+                    cliente.latitude = reader["LATITUDE_CLIENTE"].ToString();
+                    cliente.longitude = reader["LONGITUDE_CLIENTE"].ToString();
+                    cliente.distancia = reader["DISTANCIA"].ToString();
+
+                    lista.Add(cliente);
+                }
+                conn.Close();
+            }
+            return lista;
+        }
+
         //Export Cliente por Razão Social
         public List<Cliente> BuscarRazaoSocial(string razao_social_cliente, string ordem)
         {
             List<Cliente> lista = new List<Cliente>();
             string sql = string.Empty;
 
+
             if (ordem == "ASC")
             {
-                sql = "SELECT COD_CLIENTE, CNPJ_CLIENTE, RAZAO_SOCIAL_CLIENTE, LATITUDE_CLIENTE, LONGITUDE_CLIENTE ";
-                sql = sql + "FROM TB_CLIENTES WHERE RAZAO_SOCIAL_CLIENTE LIKE @razao_social ORDER BY RAZAO_SOCIAL_CLIENTE ASC";
+                sql = "SELECT C.COD_CLIENTE, C.CNPJ_CLIENTE, C.RAZAO_SOCIAL_CLIENTE, C.LATITUDE_CLIENTE, C.LONGITUDE_CLIENTE, C.DISTANCIA, " +
+                   "V.COD_VENDEDOR, V.NOME_VENDEDOR " +
+                   "FROM TB_CLIENTES AS C INNER JOIN TB_VENDEDORES AS V ON C.COD_VENDEDOR = V.COD_VENDEDOR WHERE C.RAZAO_SOCIAL_CLIENTE LIKE @razao_social ORDER BY C.RAZAO_SOCIAL_CLIENTE ASC";
             }
             else
             {
-                sql = "SELECT COD_CLIENTE, CNPJ_CLIENTE, RAZAO_SOCIAL_CLIENTE, LATITUDE_CLIENTE, LONGITUDE_CLIENTE ";
-                sql = sql + "FROM TB_CLIENTES WHERE RAZAO_SOCIAL_CLIENTE LIKE @razao_social ORDER BY RAZAO_SOCIAL_CLIENTE DESC";
+                sql = "SELECT C.COD_CLIENTE, C.CNPJ_CLIENTE, C.RAZAO_SOCIAL_CLIENTE, C.LATITUDE_CLIENTE, C.LONGITUDE_CLIENTE, C.DISTANCIA, " +
+                    "V.COD_VENDEDOR, V.NOME_VENDEDOR " +
+                    "FROM TB_CLIENTES AS C INNER JOIN TB_VENDEDORES AS V ON C.COD_VENDEDOR = V.COD_VENDEDOR WHERE C.RAZAO_SOCIAL_CLIENTE LIKE @razao_social ORDER BY C.RAZAO_SOCIAL_CLIENTE DESC";
             }
 
             using (MySqlConnection conn = new MySqlConnection(conStr))
@@ -249,10 +335,13 @@ namespace Salutem.DAO
                 {
                     Cliente cliente = new Cliente();
                     cliente.cod_cliente = int.Parse(reader["COD_CLIENTE"].ToString());
+                    cliente.cod_vendedor_fk = int.Parse(reader["COD_VENDEDOR"].ToString());
+                    cliente.nome = reader["NOME_VENDEDOR"].ToString();
                     cliente.cnpj = reader["CNPJ_CLIENTE"].ToString();
                     cliente.razao_social = reader["RAZAO_SOCIAL_CLIENTE"].ToString();
                     cliente.latitude = reader["LATITUDE_CLIENTE"].ToString();
                     cliente.longitude = reader["LONGITUDE_CLIENTE"].ToString();
+                    cliente.distancia = reader["DISTANCIA"].ToString();
 
                     lista.Add(cliente);
                 }
@@ -261,7 +350,7 @@ namespace Salutem.DAO
             return lista;
         }
 
-        //Distribuicao Preenchimento DG
+        //Distribuição Clientes para Vendedores
         public List<Cliente> BuscarClienteDist(int cod_cliente)
         {
             List<Cliente> lista = new List<Cliente>();
@@ -281,8 +370,8 @@ namespace Salutem.DAO
                         "WHERE CLIENTE.COD_CLIENTE = " + cod_cliente + " " +
                         "ORDER BY DISTANCIA ASC " +
                         "LIMIT 1";
-            
-            
+
+
             using (MySqlConnection conn = new MySqlConnection(conStr))
             {
                 conn.Open();
@@ -305,7 +394,6 @@ namespace Salutem.DAO
             }
             return lista;
         }
-
 
     }
 }

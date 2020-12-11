@@ -29,11 +29,19 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.btnExportTxt = new System.Windows.Forms.Button();
             this.dgvExport = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtCaminho = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnAbrir = new System.Windows.Forms.Button();
@@ -56,14 +64,6 @@
             this.rdbAscendente = new System.Windows.Forms.RadioButton();
             this.rdbDecrescente = new System.Windows.Forms.RadioButton();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExport)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -100,7 +100,7 @@
             // 
             // btnExportTxt
             // 
-            this.btnExportTxt.Location = new System.Drawing.Point(628, 606);
+            this.btnExportTxt.Location = new System.Drawing.Point(758, 606);
             this.btnExportTxt.Name = "btnExportTxt";
             this.btnExportTxt.Size = new System.Drawing.Size(121, 37);
             this.btnExportTxt.TabIndex = 2;
@@ -115,11 +115,11 @@
             this.dgvExport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvExport.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
+            this.Column3,
+            this.Column2,
             this.Column6,
             this.Column8,
             this.Column7,
-            this.Column3,
-            this.Column2,
             this.Column4,
             this.Column5});
             this.dgvExport.Location = new System.Drawing.Point(12, 200);
@@ -127,6 +127,68 @@
             this.dgvExport.ReadOnly = true;
             this.dgvExport.Size = new System.Drawing.Size(994, 400);
             this.dgvExport.TabIndex = 8;
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "COD_CLIENTE";
+            this.Column1.HeaderText = "Código";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "CNPJ";
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            this.Column3.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Column3.HeaderText = "CNPJ";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 150;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "RAZAO_SOCIAL";
+            this.Column2.HeaderText = "Razão Social";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 300;
+            // 
+            // Column6
+            // 
+            this.Column6.DataPropertyName = "COD_VENDEDOR_FK";
+            this.Column6.HeaderText = "Código do Vendedor";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
+            // Column8
+            // 
+            this.Column8.DataPropertyName = "NOME";
+            this.Column8.HeaderText = "Nome do Vendedor";
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            // 
+            // Column7
+            // 
+            this.Column7.DataPropertyName = "DISTANCIA";
+            this.Column7.HeaderText = "Distancia";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "LATITUDE";
+            this.Column4.HeaderText = "Latitude";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 150;
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "LONGITUDE";
+            this.Column5.HeaderText = "Longitude";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Width = 150;
             // 
             // txtCaminho
             // 
@@ -157,7 +219,7 @@
             // 
             // btnExportCSV
             // 
-            this.btnExportCSV.Location = new System.Drawing.Point(755, 606);
+            this.btnExportCSV.Location = new System.Drawing.Point(885, 606);
             this.btnExportCSV.Name = "btnExportCSV";
             this.btnExportCSV.Size = new System.Drawing.Size(121, 37);
             this.btnExportCSV.TabIndex = 3;
@@ -190,6 +252,8 @@
             this.txtCodVendedor.Name = "txtCodVendedor";
             this.txtCodVendedor.Size = new System.Drawing.Size(111, 20);
             this.txtCodVendedor.TabIndex = 6;
+            this.txtCodVendedor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCodVendedor_KeyDown);
+            this.txtCodVendedor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodVendedor_KeyPress);
             // 
             // label7
             // 
@@ -260,7 +324,7 @@
             // rdbCodVendedor
             // 
             this.rdbCodVendedor.AutoSize = true;
-            this.rdbCodVendedor.Location = new System.Drawing.Point(313, 4);
+            this.rdbCodVendedor.Location = new System.Drawing.Point(219, 4);
             this.rdbCodVendedor.Name = "rdbCodVendedor";
             this.rdbCodVendedor.Size = new System.Drawing.Size(122, 17);
             this.rdbCodVendedor.TabIndex = 8;
@@ -271,7 +335,7 @@
             // rdbRazaoSocial
             // 
             this.rdbRazaoSocial.AutoSize = true;
-            this.rdbRazaoSocial.Location = new System.Drawing.Point(219, 4);
+            this.rdbRazaoSocial.Location = new System.Drawing.Point(347, 4);
             this.rdbRazaoSocial.Name = "rdbRazaoSocial";
             this.rdbRazaoSocial.Size = new System.Drawing.Size(88, 17);
             this.rdbRazaoSocial.TabIndex = 7;
@@ -342,68 +406,6 @@
             this.rdbDecrescente.Text = "Decrescente";
             this.rdbDecrescente.UseVisualStyleBackColor = true;
             // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "COD_CLIENTE";
-            this.Column1.HeaderText = "Código";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            this.Column6.DataPropertyName = "COD_VENDEDOR_FK";
-            this.Column6.HeaderText = "Código do Vendedor";
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            // 
-            // Column8
-            // 
-            this.Column8.DataPropertyName = "NOME";
-            this.Column8.HeaderText = "Nome do Vendedor";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            // 
-            // Column7
-            // 
-            this.Column7.DataPropertyName = "DISTANCIA";
-            this.Column7.HeaderText = "Distancia";
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "CNPJ";
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            this.Column3.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Column3.HeaderText = "CNPJ";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 150;
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "RAZAO_SOCIAL";
-            this.Column2.HeaderText = "Razão Social";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 300;
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "LATITUDE";
-            this.Column4.HeaderText = "Latitude";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 150;
-            // 
-            // Column5
-            // 
-            this.Column5.DataPropertyName = "LONGITUDE";
-            this.Column5.HeaderText = "Longitude";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Width = 150;
-            // 
             // FrmExportClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -417,6 +419,8 @@
             this.Controls.Add(this.dgvExport);
             this.Controls.Add(this.btnExportTxt);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "FrmExportClientes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Exportação de Clientes";
@@ -465,11 +469,11 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.RadioButton rdbCodVendedor;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
     }

@@ -244,7 +244,7 @@ namespace Salutem
                 if (txtPesquisa.Text.Length > 0)
                 {
                     ClienteDAO clientedao = new ClienteDAO();
-                    bindingSource1.DataSource = clientedao.BuscarRazaoSocial(txtPesquisa.Text, "ASC");
+                    bindingSource1.DataSource = clientedao.PesquisarCliente(txtPesquisa.Text);
 
                     dgvDados.AutoGenerateColumns = false;
                     dgvDados.DataSource = bindingSource1;

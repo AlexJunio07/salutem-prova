@@ -44,11 +44,25 @@ namespace Salutem
                         dgvExport.AutoGenerateColumns = false;
                         dgvExport.DataSource = bindingSource1;
                     }
-                    else
+                    else if (rdbRazaoSocial.Checked == true)
                     {
                         bindingSource1.DataSource = clientedao.BuscarRazaoSocial(txtRazaoSocial.Text, "ASC");
                         dgvExport.AutoGenerateColumns = false;
                         dgvExport.DataSource = bindingSource1;
+                    }
+                    else
+                    {
+                        if (txtCodVendedor.Text == "")
+                        {
+                            bindingSource1.DataSource = clientedao.BuscarCodVendedor(0, "ASC");
+                        }
+                        else
+                        {
+                            bindingSource1.DataSource = clientedao.BuscarCodVendedor(int.Parse(txtCodVendedor.Text), "ASC");
+                        }
+                        dgvExport.AutoGenerateColumns = false;
+                        dgvExport.DataSource = bindingSource1;
+
                     }
                 }
                 else
@@ -190,7 +204,6 @@ namespace Salutem
                 try
                 {
                     string sLine = "";
-
                     //Percorre todas as linhas da tabela
                     for (int r = 0; r <= dgvExport.Rows.Count - 1; r++)
                     {
@@ -232,6 +245,8 @@ namespace Salutem
             txtRazaoSocial.Enabled = true;
             txtCodVendedor.Enabled = false;
             txtCodCliente.Text = string.Empty;
+            txtCodVendedor.Text = string.Empty;
+            txtRazaoSocial.Focus();
         }
 
         private void rdbCodCliente_CheckedChanged(object sender, EventArgs e)
@@ -240,6 +255,7 @@ namespace Salutem
             txtRazaoSocial.Enabled = false;
             txtCodVendedor.Enabled = false;
             txtRazaoSocial.Text = string.Empty;
+            txtCodVendedor.Text = string.Empty;
         }
 
         private void txtCodCliente_KeyPress(object sender, KeyPressEventArgs e)
@@ -268,6 +284,22 @@ namespace Salutem
             txtCodCliente.Enabled = false;
             txtRazaoSocial.Enabled = false;
             txtCodVendedor.Enabled = true;
+            txtCodVendedor.Focus();
+            txtRazaoSocial.Text = string.Empty;
+            txtCodCliente.Text = string.Empty;
+        }
+
+        private void txtCodVendedor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Funcoes.DigitarNumeros(e);
+        }
+
+        private void txtCodVendedor_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                BuscarDados();
+            }
         }
     }
 }

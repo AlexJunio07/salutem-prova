@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label3 = new System.Windows.Forms.Label();
             this.rdbAscendente = new System.Windows.Forms.RadioButton();
             this.rdbDecrescente = new System.Windows.Forms.RadioButton();
@@ -147,6 +147,7 @@
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(490, 20);
             this.txtNome.TabIndex = 1;
+            this.txtNome.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtNome_KeyDown);
             // 
             // txtCodVendedor
             // 
@@ -275,8 +276,8 @@
             // Column3
             // 
             this.Column3.DataPropertyName = "CPF";
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            this.Column3.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            this.Column3.DefaultCellStyle = dataGridViewCellStyle3;
             this.Column3.HeaderText = "CPF";
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
@@ -355,6 +356,8 @@
             this.Controls.Add(this.dgvExport);
             this.Controls.Add(this.btnExportTxt);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "FrmExportVendedores";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Exportação de Vendedores";

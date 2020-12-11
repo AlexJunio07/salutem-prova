@@ -245,5 +245,13 @@ namespace Salutem
                 BuscarDados();
             }
         }
+
+        private void txtNome_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                BuscarDados();
+            }
+        }
     }
 }
